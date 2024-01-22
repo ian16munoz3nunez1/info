@@ -213,10 +213,12 @@ Se agrega lo siguiente
 
 ```
 [share]
+comment = Samba Server
 path = /home/<username>/shared
 read only = no
 public = yes
 writable = yes
+browsable = yes
 ```
 
 al archivo `/etc/samba/smb.conf`
