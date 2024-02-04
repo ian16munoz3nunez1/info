@@ -223,6 +223,12 @@ browsable = yes
 
 al archivo `/etc/samba/smb.conf`
 
+Para revisar los puntos de montaje se usa el comando:
+
+```
+smbclient -L <hostname/IPaddress> -U <username>
+```
+
 Para conectarse al servidor se puede usar el siguiente comando:
 
 ```
