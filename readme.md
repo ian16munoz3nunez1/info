@@ -437,6 +437,12 @@ un formato multilinea.
 - `route -n` muestra información de las tablas de enrutamiento de IP.
 - `ss -4` para mostrar solo los sockets de versión IPv4.
 - `sudo netstat -plnt` para mostrar los puertos abiertos.
+- `sudo ufw enable` habilita el firewall `ufw` de linux.
+- `sudo ufw disable` deshabilita el firewall `ufw` de linux.
+- `sudo ufw allow` permite conexiones desde el puerto especificado.
+- `sudo ufw deny` niega conexiones desde el puerto especificado.
+- `sudo ufw delete` elimina una regla aplicada a un puerto.
+- `sudo ufw status` muestra el estado del firewall y sus reglas.
 
 # users
 
