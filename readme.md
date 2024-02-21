@@ -224,6 +224,7 @@ código.
 - `git remote remove origin` elimina la *url* a la que apunta *origin*.
 - `git push origin <branchname>` sube al repositorio remoto la rama `<branchname>` o
 actualiza los cambios en este.
+- `git push -f origin` fuerza los cambios en el repositorio remoto.
 
 Para crear un nuevo repositorio remoto:
 
