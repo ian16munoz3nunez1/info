@@ -98,10 +98,12 @@ sudo chmod a+rx /usr/local/bin/yt-dlp
 - `j` para moverse hacia abajo.
 - `k` para moverse hacia arriba.
 - `l` para moverse hacia la derecha.
-- `Ctrl+h` para cambiar al panel izquierdo.
-- `Ctrl+j` para cambiar al panel de abajo.
-- `Ctrl+k` para cambiar al panel de arriba.
-- `Ctrl+l` para cambiar al panel derecho.
+- `Ctrl+w+s`, `:split` o `:sp` para dividir horizontalmente la pantalla.
+- `Ctrl+w+v`, `:vsplit` o `:vsp` para dividir verticalmente la pantalla.
+- `Ctrl+w+h` o `Ctrl+h` para cambiar al panel izquierdo.
+- `Ctrl+w+j` o `Ctrl+j` para cambiar al panel de abajo.
+- `Ctrl+w+k` o `Ctrl+k` para cambiar al panel de arriba.
+- `Ctrl+w+l` o `Ctrl+l` para cambiar al panel derecho.
 - `Ctrl+e` para bajar linea por linea sin mover el cursor de posición.
 - `Ctrl+d` para bajar media pantalla.
 - `Ctrl+y` para subir linea por linea sin mover el cursor de posición.
@@ -225,6 +227,11 @@ código.
 - `git push origin <branchname>` sube al repositorio remoto la rama `<branchname>` o
 actualiza los cambios en este.
 - `git push -f origin` fuerza los cambios en el repositorio remoto.
+- `git worktree add <path>` para crear un nuevo arbol de trabajo.
+- `git worktree list` para listar los arboles de trabajo actuales.
+- `git worktree prune` para eliminar los arboles de trabajo que ya no son necesarios o
+que ya no existen.
+- `git stash` (investigar sobre el comando).
 
 Para crear un nuevo repositorio remoto:
 
