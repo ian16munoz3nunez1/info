@@ -23,6 +23,7 @@
 - `sudo systemctl enable <service_name>` para habilitar un servicio.
 - `sudo systemctl list-unit-files --type service --all` para mostrar todos los servicios.
 - `sudo systemctl | grep running` para ver los servicios que se están corriendo.
+- `timedatectl` para ver la configuracion de fecha y hora y el servicio NTP.
 - `umount <mountpoint>` para desmontar un disco.
 - `uname -a` para tener información del sistema.
 - `users` muestra el los usuarios del sistema.
@@ -124,6 +125,7 @@ deseado y su estructura de directorios.
 - Lanzadores `/usr/share/applications/`.
 - Diseño de sistema e iconos `/usr/share/icons`.
 - Hosts registrados en el dispositivo `/etc/hosts`.
+- Brillo de pantalla `/sys/class/backlight/intel_backlight/`.
 
 # Formatear USB
 
@@ -208,7 +210,7 @@ Con `foldmethod=manual`
 
 - `tmux ls` para listar las sesiones.
 - `tmux a -t <session>` para entrar en la sesión \<session\>.
-- `tmux nes -s <session>` para crear una nueva sesión con el nombre \<session\>.
+- `tmux new -s <session>` para crear una nueva sesión con el nombre \<session\>.
 - `tmux kill-session -t <session>` para matar una sesión de tmux.
 
 Dentro de una sesión usando el prefijo `Ctrl+b`:
