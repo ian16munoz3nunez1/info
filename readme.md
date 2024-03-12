@@ -109,6 +109,7 @@ un formato multilinea.
 - `chgrp` para cambiar el grupo propiertario de un archivo.
 - `useradd -m -s /bin/<shelltype> <username>` para crear un usuario con el `<shelltype>`
 deseado y su estructura de directorios.
+- `passwd <username>` para generar una contraseña para el usuario `<username>`.
 - `useradd -aG sudoers <username>` para agregar un usuario al grupo de `sudoers`
 
 # files and directories
