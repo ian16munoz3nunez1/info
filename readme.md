@@ -226,10 +226,11 @@ Dentro de una sesión usando el prefijo `Ctrl+b`:
 - `n` para cambiar a la ventana siguiente.
 - `p` para cambiar a la ventana anterior.
 - `w` para seleccionar una ventana interactivamente.
+- `.` para cambiar el indice de la ventana actual.
+- `0 to 9` seleccionar una ventana del 0 al 9.
 - `&` para matar la ventana actual.
 - `(` para cambiar a la sesión previa.
 - `)` para cambiar a la sesión siguiente.
-- `0 to 9` seleccionar una ventana del 0 al 9.
 - `?` para listar todos los atajos de teclas.
 - `D` para elegir un cliente a desplegar.
 - `d` para desplegar el cliente actual (salir de la sesión).
