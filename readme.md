@@ -29,6 +29,35 @@
 - `users` muestra el los usuarios del sistema.
 - `whoami` muestra el usuario actual y `who` muestra información del usuario.
 
+## Ports
+
+### Puertos más usados:
+
+- 21: ftp
+- 22: ssh
+- 23: telnet
+- 25: smtp
+- 53: dns
+- 80: http
+- 2049: nfs
+- 5900: vnc
+
+### Puertos permitidos por ufw
+
+- 21: ftp
+- 22: ssh
+- 25: smtp
+- 80: http
+- 1714-1764: kdeconnect
+    - 1716
+    - 1739
+- 2049: nfs
+- 5900: vnc
+- 7236: gnome-network-displays
+- 8080: python
+- 8888: python
+- 9999: python
+
 # linux-commands
 
 - `cmatrix`.
@@ -100,17 +129,19 @@ un formato multilinea.
 # users
 
 - `useradd` para crear un nuevo usuario.
-- `usermod` para modificar un grupo.
+- `usermod` para modificar un usuario.
 - `userdel` para eliminar un usuario.
 - `groupadd` para crear un nuevo grupo.
 - `groupmod` para modificar un grupo.
 - `groupdel` para eliminar un grupo.
 - `chown <user>:<group> <files>` para cambiar el propietario de un archivo.
 - `chgrp` para cambiar el grupo propiertario de un archivo.
-- `useradd -m -s /bin/<shelltype> <username>` para crear un usuario con el `<shelltype>`
+- `useradd -m -s /bin/<shelltype> <username>` para crear un usuario con el `<shelltype>`.
 deseado y su estructura de directorios.
 - `passwd <username>` para generar una contraseña para el usuario `<username>`.
-- `useradd -aG sudoers <username>` para agregar un usuario al grupo de `sudoers`
+- `useradd -aG sudoers <username>` para agregar un usuario al grupo de `sudoers`.
+- `groups <username>` para ver los grupos a los que pertenece el usuario `<username>`.
+- `id -Gn <username>` para ver los grupos a los que pertenece el usuario `<username>`.
 
 # files and directories
 
