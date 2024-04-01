@@ -275,6 +275,7 @@ Dentro de una sesión usando el prefijo `Ctrl+b`:
 - `git config --global user.name <username>` configura el nombre de usuario.
 - `git config --global user.email <email>` configura el email de usuario.
 - `git config --global core.editor <editor>` configura el editor por defecto.
+- `git config --global alias.<alias> '<command>'` configura los alias usados por git
 - `git config --global --edit` para editar el archivo de configuración de git.
 - `git config --list --show-origin` muestra informacion de la configuracion, si se
 encuentra en un respositorio, muestra informacion del repo.
