@@ -576,6 +576,16 @@ sudo apt install -y virtualbox virtualbox-ext-pack
 sudo apt-get install virtualbox-guest-additions-iso
 ```
 
+Si hay problemas al arrancar las VMs, se puede probar lo siguiente:
+
+1. `uname -r` para ver el release del kernel.
+2. `sudo apt-get update` y `sudo apt-get upgrade`
+3. `sudo apt-get install build-essential` para compilar elementos necesarios.
+4. `sudo apt-get install linux-headers-$(uname -r)` para instalar los headers para el
+kernel actual.
+5. `sudo modprobe vboxdrv` y `sudo modprobe vboxnetflt` para configurar los módulos de
+VirtualBox.
+
 # wine
 
 Instalar wine con 
