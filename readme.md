@@ -139,7 +139,7 @@ un formato multilinea.
 - `useradd -m -s /bin/<shelltype> <username>` para crear un usuario con el `<shelltype>`.
 deseado y su estructura de directorios.
 - `passwd <username>` para generar una contraseña para el usuario `<username>`.
-- `useradd -aG sudoers <username>` para agregar un usuario al grupo de `sudoers`.
+- `usermod -aG sudoers <username>` para agregar un usuario al grupo de `sudoers`.
 - `groups <username>` para ver los grupos a los que pertenece el usuario `<username>`.
 - `id -Gn <username>` para ver los grupos a los que pertenece el usuario `<username>`.
 
