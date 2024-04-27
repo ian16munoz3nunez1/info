@@ -585,6 +585,7 @@ Si hay problemas al arrancar las VMs, se puede probar lo siguiente:
 kernel actual.
 5. `sudo modprobe vboxdrv` y `sudo modprobe vboxnetflt` para configurar los módulos de
 VirtualBox.
+6. `sudo usermod -aG vboxusers <username>` para agregar un usuario al grupo de ***VirtualBox***
 
 # wine
 
@@ -628,6 +629,44 @@ sudo apt install gnome-software-plugin-flatpak
 sudo apt update
 sudo apt install -y tor torbrowser-launcher
 torbrowser-launcher
+```
+
+# Qemu
+
+Para instalar ***Qemu*** se necesitan descargar los siguientes paquetes:
+
+```
+sudo apt-get install qemu-utils qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager
+```
+
+Para correr ***Qemu*** desde una imagen ***.iso*** se puede usar el siguiente comando:
+
+```
+qemu-system-x86_64 -m 4G -smp 2 --enable-kvm -name '<name>' -boot d -cdrom /path/to/file.iso
+```
+
+Para instalar un sistema en un archivo de disco virtual:
+
+```
+qemu-system-x86_64 -m 4G -smp 2 --enable-kvm -name '<name>' -boot d -hda /path/to/file.qcow2 -cdrom /path/to/file.iso
+```
+
+Para arrancar un sistema desde un disco virtual:
+
+```
+qemu-system-x86_64 -m 4G -smp 2 --enable-kvm -name '<name>' -boot d -hda /path/to/file.qcow2
+```
+
+Para crear discos virtuales se usar:
+
+```
+qemu-img create -f nameOfImage.qcow2
+```
+
+Para ver la información del disco virtual:
+
+```
+qemu-img info nameOfImage.qcow2
 ```
 
 # yt-dlp
