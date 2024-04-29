@@ -391,6 +391,8 @@ serial con la esp32cam.
 - `ssh-keygen` para generar una clave ssh en `~/.ssh`.
 - `ssh-copy-id <username>@<IP>` para copiar la clave ssh a un equipo.
 - `ssh <username>@<IP> -p 8022` para conectarse con Termux.
+- `ssh-keygen -f '/home/<username>/.ssh/known_hosts' -R '<IPaddress>'` para eliminar un
+host del archivo.
 
 # vnc
 
