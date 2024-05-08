@@ -17,6 +17,8 @@
 - `lscpu` para tener información del equipo.
 - `lsmem` para tener información de la memoria.
 - `mount <device> <mountpoint>` para montar un disco conectado.
+- `mount -o gid=<gid>,uid=<uid> <device> <mountpoint>` para montar un dispositivo con
+permisos para el grupo y usuario asignado.
 - `sudo dmidecode` para tener información del sistema.
 - `sudo service --status-all` para listar los servicios que se están ejecutando.
 - `sudo systemctl disable <service_name>` para deshabilitar un servicio.
