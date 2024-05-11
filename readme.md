@@ -128,6 +128,12 @@ un formato multilinea.
 - `sudo ufw delete` elimina una regla aplicada a un puerto.
 - `sudo ufw status` muestra el estado del firewall y sus reglas.
 
+Ubicaciones para configurar interfaces de red:
+
+- `/etc/network/interfaces`
+- `/etc/netplan/`
+- `/etc/NetworkManager/system-connections`
+
 # users
 
 - `useradd` para crear un nuevo usuario.
@@ -277,7 +283,9 @@ Dentro de una sesión usando el prefijo `Ctrl+b`:
 - `git config --global user.name <username>` configura el nombre de usuario.
 - `git config --global user.email <email>` configura el email de usuario.
 - `git config --global core.editor <editor>` configura el editor por defecto.
-- `git config --global alias.<alias> '<command>'` configura los alias usados por git
+- `git config --global alias.<alias> '<command>'` configura los alias usados por git.
+- `git config --global init.defaultBranch <name` configura el nombre por default de la
+rama.
 - `git config --global --edit` para editar el archivo de configuración de git.
 - `git config --list --show-origin` muestra informacion de la configuracion, si se
 encuentra en un respositorio, muestra informacion del repo.
@@ -334,9 +342,12 @@ que ya no existen.
 
 Para crear un nuevo repositorio remoto:
 
-1. `git branch -M main`
-2. `git remote add origin <url>`
-3. `git remote push -u origin main`
+1. `git init`
+2. `git add <list_of_files>`
+3. `git commit -m "<first commit>"`
+4. `git branch -M main`
+5. `git remote add origin <url>`
+6. `git push -u origin main`
 
 Sugerencias para crear commits:
 
