@@ -166,6 +166,8 @@ deseado y su estructura de directorios.
 - Diseño de sistema e iconos `/usr/share/icons`.
 - Hosts registrados en el dispositivo `/etc/hosts`.
 - Brillo de pantalla `/sys/class/backlight/intel_backlight/`.
+- Datos guardados de PPSSPP `~/.var/app/org.ppsspp.PPSSPP/config/ppsspp/PSP/SAVEDATA/`.
+- Archivos necesarios para xemu `~/.var/app/app.xemu.xemu/data/xemu/xemu/`.
 
 # Formatear USB
 
