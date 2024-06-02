@@ -10,15 +10,28 @@
 - `date` para ver la fecha y hora.
 - `dpkg-query -W <package>` para mostrar la versión de un paquete instalado.
 - `echo $SHELL`, `echo $0` o `echo $TERM` para ver el tipo de terminal.
+- `echo <password> | sudo -S <comando>` para ejecutar un comando con permisos de
+administrador
+- `echo <password> | sudo -u <user_name> -S <comando>` para ejecutar un comando
+como el usuario indicado.
 - `eject <device>` para ejecutar un disco.
+- `exiftool [-|h|v] <filename>` para ver los metadatos de un archivo.
+- `exiftool -tag="<label>"` para agregar un tag o metadato al archivo.
+- `find . -maxdepth=1 -type f | wc -l` para contar el número de archivos en el
+directorio actual.
+- `find -name '*.<ext>' -type f` para listar archivos con cierta extensión.
+- `find -name '*.<ext>' -type f -delete` para eliminar archivos con cierta extensión.
 - `getent passwd <username>` y `getent group <username>` muestran información del usuario.
 - `groups` muestra los grupos del sistema.
+- `ls | wc -l` para contar el número de archivos en un directorio.
+- `ls -d */` o `ls -F | grep /` para listar los directorios.
 - `ls -l /dev/disk/by-uuid` o `ls -l /dev/disk/by-label` para listar los discos conectados.
 - `lscpu` para tener información del equipo.
 - `lsmem` para tener información de la memoria.
 - `mount <device> <mountpoint>` para montar un disco conectado.
 - `mount -o gid=<gid>,uid=<uid> <device> <mountpoint>` para montar un dispositivo con
 permisos para el grupo y usuario asignado.
+- `readlink -f <file_name>` para mostrar el valor de un enlace simbolico.
 - `sudo dmidecode` para tener información del sistema.
 - `sudo service --status-all` para listar los servicios que se están ejecutando.
 - `sudo systemctl disable <service_name>` para deshabilitar un servicio.
@@ -31,7 +44,7 @@ permisos para el grupo y usuario asignado.
 - `users` muestra el los usuarios del sistema.
 - `whoami` muestra el usuario actual y `who` muestra información del usuario.
 
-## Ports
+## ports
 
 ### Puertos más usados:
 
@@ -59,24 +72,6 @@ permisos para el grupo y usuario asignado.
 - 8080: python
 - 8888: python
 - 9999: python
-
-# linux-commands
-
-- `cmatrix`.
-- `cowsay`.
-- `echo <password> | sudo -S <comando>` para ejecutar un comando con permisos de
-- `echo <password> | sudo -u root -S <comando>` para ejecutar un comando con permisos de
-administrador.
-- `find . -maxdepth=1 -type f | wc -l` para contar el número de archivos en el
-directorio actual.
-- `find -name '*.<ext>' -type f` para listar archivos con cierta extensión.
-- `find -name '*.<ext>' -type f -delete` para eliminar archivos con cierta extensión.
-administrador
-- `fortune`.
-- `ls | wc -l` para contar el número de archivos en un directorio.
-- `ls -d */` o `ls -F | grep /` para listar los directorios.
-- `exiftool [-|h|v] <filename>` para ver los metadatos de un archivo.
-- `exiftool -tag="<label>"` para agregar un tag o metadato al archivo.
 
 # multimedia
 
@@ -107,6 +102,21 @@ audio.
 
 # network
 
+- `ip addr show <iface>` para mostrar informacion de una interfaz de red.
+- `ip neigh` mustra los dispositivos vecinos.
+- `sudo ip addr add <ip_address>/<netmask> broadcast <broadcast> scope global noprefixroute dev <iface>` para
+agregar una ip a una interfaz de red.
+- `sudo ip addr del <ip_address>/<netmask> dev <iface>` para eliminar la ip de una interfaz.
+- `sudo ip link set <iface> up` para activar una interfaz de red.
+- `sudo ip link set <iface> down` para desactivar una interfaz de red.
+- `sudo ifconfig <iface> <ip_address> netmask <netmask>` para agregar una direccion ip
+a una interfaz de red.
+    - `sudo ifconfig wlan0 192.168.1.64 netmask 255.255.255.0` como ejemplo.
+- `sudo route add default gw <gateway> <iface>` para cambiar la puerta de enlace.
+    - `sudo route add default 192.168.1.1 wlan0` como ejemplo.
+- `sudo dhclient -r` para liberar la direccion ip actual.
+- `sudo dhclient` para renovar una direccion ip.
+- `sudo networking restart` para reiniciar el servicio de red.
 - `curl ifconfig.me` o `ifconfig.me/all` para tener información pública del equipo.
 - `hostname -f|i|a` para conocer el información de nuestro host.
 - `ifconfig` o `ip a` para ver información de red del equipo.
@@ -123,10 +133,30 @@ un formato multilinea.
 - `sudo netstat -plnt` para mostrar los puertos abiertos.
 - `sudo ufw enable` habilita el firewall `ufw` de linux.
 - `sudo ufw disable` deshabilita el firewall `ufw` de linux.
-- `sudo ufw allow` permite conexiones desde el puerto especificado.
-- `sudo ufw deny` niega conexiones desde el puerto especificado.
+- `sudo ufw reset` para reiniciar el firewall.
+- `sudo ufw allow <port>/[tcp/udp]` permite conexiones desde el puerto `<port>`.
+- `sudo ufw allow <port1>:<port2>/[tcp/udp]` permite conexiones en un rango de
+puertos.
+- `sudo ufw allow from <ip_address>` permite la conexion desde la ip `<ip_address>`.
+- `sudo ufw allow from <ip_address> to any port <port>/[tcp/udp]` para permitir
+la conexion de una ip especifica a un puerto especifico.
+- `sudo ufw allow from <prefix>/<netmask>` para permitir acceso a una subred.
+- `sudo ufw allow in on <net_iface>` para permitir conexiones desde una interfaz de
+red especifica.
+- `sudo ufw deny <port>/[tcp/udp]` niega conexiones desde el puerto `<port>`.
+- `sudo ufw deny <port1>:<port2>/[tcp/udp]` niega conexiones en un rango de puertos.
+- `sudo ufw deny from <ip_address>` niega la conexion desde la ip `<ip_address>`.
+- `sudo ufw deny from <ip_address> to any port <port>/[tcp/udp]` para negar
+la conexion de una ip especifica a un puerto especifico.
+- `sudo ufw deny from <prefix>/<netmask>` para negar acceso a una subred.
+- `sudo ufw deny in on <net_iface>` para negar conexiones desde una interfaz de
+red especifica.
 - `sudo ufw delete` elimina una regla aplicada a un puerto.
 - `sudo ufw status` muestra el estado del firewall y sus reglas.
+- `sudo ufw status numbered` muestra las reglas enumeradas del firewall.
+- `sudo udw status verbose` para ver el estado del firewall.
+- `sudo ufw default [allow/deny] [incoming/outgoing]` para permitir o denegar las
+conexiones de entrada o salida.
 
 Ubicaciones para configurar interfaces de red:
 
@@ -148,10 +178,11 @@ Ubicaciones para configurar interfaces de red:
 deseado y su estructura de directorios.
 - `passwd <username>` para generar una contraseña para el usuario `<username>`.
 - `usermod -aG sudoers <username>` para agregar un usuario al grupo de `sudoers`.
+- `usermod -d <dirname> <username>` para asignar el directorio `<dirname>` al usuario `<username>`.
 - `groups <username>` para ver los grupos a los que pertenece el usuario `<username>`.
 - `id -Gn <username>` para ver los grupos a los que pertenece el usuario `<username>`.
 
-# files and directories
+# paths
 
 - Configuración de variables de entorno y sistema `~/.zshrc`.
 - Configuración de ***ssh*** `~/.ssh/`
@@ -166,10 +197,11 @@ deseado y su estructura de directorios.
 - Diseño de sistema e iconos `/usr/share/icons`.
 - Hosts registrados en el dispositivo `/etc/hosts`.
 - Brillo de pantalla `/sys/class/backlight/intel_backlight/`.
-- Datos guardados de PPSSPP `~/.var/app/org.ppsspp.PPSSPP/config/ppsspp/PSP/SAVEDATA/`.
-- Archivos necesarios para xemu `~/.var/app/app.xemu.xemu/data/xemu/xemu/`.
+- Datos guardados de ***PPSSPP*** `~/.var/app/org.ppsspp.PPSSPP/config/ppsspp/PSP/SAVEDATA/`.
+- Archivos necesarios para ***xemu*** `~/.var/app/app.xemu.xemu/data/xemu/xemu/`.
+- Para variables de entorno `/etc/profile`, `/etc/environment` y `/etc/environment.d/`.
 
-# Formatear USB
+# format
 
 ```
 sudo fdisk -l // Lista los discos disponibles
@@ -181,7 +213,7 @@ sudo mkdosfs -F 32 -I /dev/sdx
 - `sudo /opt/lampp/lampp startmysql` para iniciar el servidor MySQL.
 - `/opt/lampp/bin/mysql -u root -p` para iniciar MySQL como root.
 
-# .jar
+# jar
 
 ```
 javac -d . main.java
@@ -196,8 +228,6 @@ java -jar main.jar
 - `j` para moverse hacia abajo.
 - `k` para moverse hacia arriba.
 - `l` para moverse hacia la derecha.
-- `Ctrl+w+s`, `:split` o `:sp` para dividir horizontalmente la pantalla.
-- `Ctrl+w+v`, `:vsplit` o `:vsp` para dividir verticalmente la pantalla.
 - `Ctrl+w+h` o `Ctrl+h` para cambiar al panel izquierdo.
 - `Ctrl+w+j` o `Ctrl+j` para cambiar al panel de abajo.
 - `Ctrl+w+k` o `Ctrl+k` para cambiar al panel de arriba.
@@ -209,28 +239,39 @@ java -jar main.jar
 - `Shift+$` para mover el cursor al final de la linea.
 - `Shift+^` para mover el cursor al inicio de la linea.
 - `v` para activar el modo ***Visual***.
+- `Ctrl+o` en modo ***insertar*** para pasar puntualmente al modo ***visual***.
 - `Ctrl+v` para activar el modo ***Bloque Visual***.
 - `i` para activar el modo ***Insertar***.
 - `a` para avanzar un caracter e insertar.
 - `Shift+a` para insertar al final de la linea.
 - `o` para insertar debajo de la linea.
 - `O` para insertar arriba de la linea.
-- `u` para deshacer los cambios.
-- `:w` para guardar los cambios.
-- `:q` para cerrar el editor.
-- `:q!` para cerrar el editor sin guardar los cambios.
-- `:e` para actualizar el archivo.
-- `:tabe` para abrir una nueva pestaña con un archivo o un buffer vacío.
-- `gt` para moverse a la pestaña siguiente.
-- `gT` para moverse a la pestaña anterior.
-- `/` para buscar coincidencias en el archivo.
+- `Shift+i`, en modo ***Bloque Visual*** inserta en todas las lineas seleccionadas.
 - `dd` para cortar la linea o el texto seleccionado.
 - `#dd` para cortar # lineas desde el cursor hacia abajo.
 - `diw` cortar la palabra actual.
 - `yy` para copiar la linea o el texto seleccionado.
 - `#yy` para copiar # lineas desde el cursor hacia abajo.
 - `yiw` para copiar la palabra actual.
-- `Shift+i`, en modo ***Bloque Visual*** inserta en todas las lineas seleccionadas.
+- `u` para deshacer los cambios.
+- `:w` para guardar los cambios.
+- `:q` para cerrar el editor.
+- `:q!` para cerrar el editor sin guardar los cambios.
+- `:e` para actualizar el archivo.
+- `/` para buscar coincidencias en el archivo de arriba a abajo.
+- `?` para buscar coincidencias en el archivo de abajo a arriba.
+- `*` al estar situado en una palabra para buscar sus coincidencias.
+- `n` al buscar regex's para moverse a la siguiente.
+- `N` al buscar regex's para moverse a la anterior.
+- `f<c>` o `t<c>` para moverse al siguiente caracter `<c>` en la linea actual.
+- `F<c>` o `T<c>` para moverse al caracter anterior `<c>` en la linea actual.
+- `Ctrl+w+s`, `:split` o `:sp` para dividir horizontalmente la pantalla.
+- `Ctrl+w+v`, `:vsplit` o `:vsp` para dividir verticalmente la pantalla.
+- `:tabe` para abrir una nueva pestaña con un archivo o un buffer vacío.
+- `gt` para moverse a la pestaña siguiente.
+- `gT` para moverse a la pestaña anterior.
+
+## foldmethod
 
 Con `foldmethod=manual`
 
@@ -240,13 +281,49 @@ Con `foldmethod=manual`
 - `za` para alternar el estado del plegado.
 - `zfip` para plegar el parrafo en el que se encuentra el cursor.
 - `zfG` para plegar de la posicion actual al final del archivo.
-- `zsfa{` para plegar los textos entre llaves `{}`.
+- `zfa{` para plegar los textos entre llaves `{}`.
 - En el modo visual, se selecciona el texto que se quiere plegar y se usa `zf`.
 - `:,+1fold` tambien sirve para plegar dos lineas en una, `+1` es el rango de plegado.
-- `n1:n2fold` para plegar de la linea `n1` a la linea `n2`.
+- `:n1,n2fold` para plegar de la linea `n1` a la linea `n2`.
 - `zR` para abrir todos los plegados.
 - `zM` para cerrar todos los plegados.
 - `:h fold-commands` para ver la ayuda.
+
+## substitute
+
+Sintaxis para reemplazar en ***vim***:
+
+```
+:rango s/patron/reemplazo/[cgil]
+```
+
+El rango puede ser:
+- `<n>` numero de linea en donde se reemplazara.
+- `<n1>,<n2>` rango de lineas a reemplazar.
+- `.` para reemplazar en la linea actual.
+- `$` para reemplazar en la ultima linea del archivo.
+- `%` para reemplazar en todo el archivo.
+
+Las opciones `[cgil]` se refieren a:
+
+- `c` te obliga a confirmar en cada una de las sustituciones.
+- `g` reemplaza todas las ocurrencias de la línea. Si no se añade esta opción
+solo cambiará la primera de las apariciones en la línea.
+- `i` no distingue entre mayúsculas y minúsculas.
+- `l` diferencia entre mayúsculas y minúsculas.
+
+Asi, la sintaxis mas comun es:
+
+```
+:%s/patron/reemplazo/g
+```
+
+Ejemplos de sustituciones:
+
+- `:%s/print\s*.*$/print(\1)` le pone paréntesis a todos los print
+- `:%s/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$//g` elimina colores en hexadecimal
+- `:%s/^(?:[0-9a-f]{2}[\-:]?){6}(?<![\-:])$//g` elimina las direcciones MAC
+- `:%s/<!\[CDATA\[(.*)\]\]>//g` eliminar etiquetas `CDATA`
 
 # tmux
 
@@ -340,9 +417,12 @@ actualiza los cambios en este.
 - `git worktree list` para listar los arboles de trabajo actuales.
 - `git worktree prune` para eliminar los arboles de trabajo que ya no son necesarios o
 que ya no existen.
+- `git worktree remove` para eliminar un arbol de trabajo.
+- `git archive --format tar --output <file_name>.tar <branch_name>` para crear un
+archivador de una rama.
 - `git stash` (investigar sobre el comando).
 
-Para crear un nuevo repositorio remoto:
+## Subiendo un repositorio local
 
 1. `git init`
 2. `git add <list_of_files>`
@@ -351,7 +431,7 @@ Para crear un nuevo repositorio remoto:
 5. `git remote add origin <url>`
 6. `git push -u origin main`
 
-Sugerencias para crear commits:
+## Sugerencias para crear commits
 
 `<commit_type>[scope]: <description>`
 
@@ -367,13 +447,23 @@ Sugerencias para crear commits:
 - `style`: Cambios de formato, tabulaciones, espacios o puntos y coma, etc; no afectan al usuario
 - `test`: Añade tests o refactoriza uno existente
 
-`<scope>`
+### `<scope>`
 
 En monorespositorios multipaquete, se puede añadir tambíen la información
 del paquete que es afectado por el commit. Se le conoce como 'scope':
 
 - `feat(backend)`: Descripción del commit.
 - `fix(web)`: Descripción del commit.
+
+## Creando un repositorio remoto en un servidor local
+
+1. `useradd -m -s /bin/bash git`
+2. `sudo passwd git`
+3. `sudo chmod 700 -R /home/git`
+4. `mkdir <git_dir>`
+5. `cd <git_dir>`
+6. `git init --bare`
+7. `echo "ref: refs/heads/main" > HEAD`
 
 # termux
 
