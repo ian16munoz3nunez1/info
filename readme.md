@@ -1,13 +1,10 @@
 # system
 
-- Para listar información de particiones:
-    - `df -h`
-    - `fdisk -l`
-    - `lsblk`
 - `apt-cache showpkg <package>` para mostrar información de un paquete.
 - `cal` o `ncal` para ver un calendario o la fecha actual.
 - `cat /etc/shells` para ver las terminales disponibles.
 - `date` para ver la fecha y hora.
+- `df -h` muestra particiones, su tamaño y el espacio usado y disponible.
 - `dpkg-query -W <package>` para mostrar la versión de un paquete instalado.
 - `echo $SHELL`, `echo $0` o `echo $TERM` para ver el tipo de terminal.
 - `echo <password> | sudo -S <comando>` para ejecutar un comando con permisos de
@@ -28,6 +25,7 @@ simbolico a un archivo.
 - `ls | wc -l` para contar el número de archivos en un directorio.
 - `ls -d */` o `ls -F | grep /` para listar los directorios.
 - `ls -l /dev/disk/by-uuid` o `ls -l /dev/disk/by-label` para listar los discos conectados.
+- `lsblk` muestra los discos, sus particiones, tamaño y el tipo de sistema de archivos.
 - `lscpu` para tener información del equipo.
 - `lsmem` para tener información de la memoria.
 - `mount <device> <mountpoint>` para montar un disco conectado.
@@ -35,6 +33,11 @@ simbolico a un archivo.
 permisos para el grupo y usuario asignado.
 - `readlink -f <file_name>` para mostrar el valor de un enlace simbolico.
 - `sudo dmidecode` para tener información del sistema.
+- `sudo fdisk -l` para listar los discos disponibles.
+- `sudo mkdosfs -F 32 -I /dev/sdx -n <unitName>` formatea la unidad indicada y le da
+el nombre `<unitName>`.
+- `sudo mkfs.<type> -I /dev/sdx -n <unitName>` formatea la unidad indicada con el tipo
+de sistema de archivos `<type>` y le asigna el nombre `<unitName>`.
 - `sudo service --status-all` para listar los servicios que se están ejecutando.
 - `sudo systemctl disable <service_name>` para deshabilitar un servicio.
 - `sudo systemctl enable <service_name>` para habilitar un servicio.
@@ -43,7 +46,7 @@ permisos para el grupo y usuario asignado.
 - `timedatectl` para ver la configuracion de fecha y hora y el servicio NTP.
 - `umount <mountpoint>` para desmontar un disco.
 - `uname -a` para tener información del sistema.
-- `users` muestra el los usuarios del sistema.
+- `users` muestra los usuarios del sistema.
 - `whoami` muestra el usuario actual y `who` muestra información del usuario.
 
 ## ports
@@ -202,13 +205,6 @@ deseado y su estructura de directorios.
 - Datos guardados de ***PPSSPP*** `~/.var/app/org.ppsspp.PPSSPP/config/ppsspp/PSP/SAVEDATA/`.
 - Archivos necesarios para ***xemu*** `~/.var/app/app.xemu.xemu/data/xemu/xemu/`.
 - Para variables de entorno `/etc/profile`, `/etc/environment` y `/etc/environment.d/`.
-
-# format
-
-```
-sudo fdisk -l // Lista los discos disponibles
-sudo mkdosfs -F 32 -I /dev/sdx
-```
 
 # XAMPP
 
