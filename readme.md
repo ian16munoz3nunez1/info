@@ -1,4 +1,4 @@
-# system
+# linux
 
 - `apt-cache showpkg <package>` para mostrar información de un paquete.
 - `cal` o `ncal` para ver un calendario o la fecha actual.
@@ -78,7 +78,7 @@ de sistema de archivos `<type>` y le asigna el nombre `<unitName>`.
 - 8888: python
 - 9999: python
 
-# multimedia
+## multimedia
 
 - `convert -resize n% <filename>.<extension>` para generar una copia redimensionada de
 una imagen.
@@ -105,7 +105,7 @@ metadato 'artist' a un archivo de audio.
 audio.
 - `yt-dlp -f 22 <URL>` para descargar un video de YouTube con formato de video.
 
-# network
+## network
 
 - `ip addr show <iface>` para mostrar informacion de una interfaz de red.
 - `ip neigh` mustra los dispositivos vecinos.
@@ -169,7 +169,7 @@ Ubicaciones para configurar interfaces de red:
 - `/etc/netplan/`
 - `/etc/NetworkManager/system-connections`
 
-# users
+## users
 
 - `useradd` para crear un nuevo usuario.
 - `usermod` para modificar un usuario.
@@ -187,7 +187,7 @@ deseado y su estructura de directorios.
 - `groups <username>` para ver los grupos a los que pertenece el usuario `<username>`.
 - `id -Gn <username>` para ver los grupos a los que pertenece el usuario `<username>`.
 
-# paths
+## paths
 
 - Configuración de variables de entorno y sistema `~/.zshrc`.
 - Configuración de ***ssh*** `~/.ssh/`
@@ -205,6 +205,22 @@ deseado y su estructura de directorios.
 - Datos guardados de ***PPSSPP*** `~/.var/app/org.ppsspp.PPSSPP/config/ppsspp/PSP/SAVEDATA/`.
 - Archivos necesarios para ***xemu*** `~/.var/app/app.xemu.xemu/data/xemu/xemu/`.
 - Para variables de entorno `/etc/profile`, `/etc/environment` y `/etc/environment.d/`.
+
+# windows
+
+## UAC
+
+Para deshabilitar el control de cuentas de usuarios se tiene que cambiar el valor de
+`EnableLUA` a 0.
+
+![](.src/uac.png)
+
+## activate windows
+
+Para quitar la marca de agua sobre la activación de `Windows` se cambia el
+siguiente valor desde el editor del registro
+
+![](.src/activateWindows.png)
 
 # MySQL
 
