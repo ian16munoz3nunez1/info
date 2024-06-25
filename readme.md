@@ -23,6 +23,8 @@ directorio actual.
 - `find -name '*.<ext>' -type f -delete` para eliminar archivos con cierta extensión.
 - `getent passwd <username>` y `getent group <username>` muestran información del usuario.
 - `groups` muestra los grupos del sistema.
+- `ln -s <origin_absolute_path> <destination_absolute_path>` para crear un enlace
+simbolico a un archivo.
 - `ls | wc -l` para contar el número de archivos en un directorio.
 - `ls -d */` o `ls -F | grep /` para listar los directorios.
 - `ls -l /dev/disk/by-uuid` o `ls -l /dev/disk/by-label` para listar los discos conectados.
@@ -109,7 +111,7 @@ agregar una ip a una interfaz de red.
 - `sudo ip addr del <ip_address>/<netmask> dev <iface>` para eliminar la ip de una interfaz.
 - `sudo ip link set <iface> up` para activar una interfaz de red.
 - `sudo ip link set <iface> down` para desactivar una interfaz de red.
-- `sudo ifconfig <iface> <ip_address> netmask <netmask>` para agregar una direccion ip
+- `sudo ifconfig <iface> <ip_address> netmask <netmask> broadcast <broadcast>` para agregar una direccion ip
 a una interfaz de red.
     - `sudo ifconfig wlan0 192.168.1.64 netmask 255.255.255.0` como ejemplo.
 - `sudo route add default gw <gateway> <iface>` para cambiar la puerta de enlace.
@@ -515,7 +517,9 @@ Para levantar el servidor se ejecuta `wayvnc 0.0.0.0 5900 -r`
 
 # samba
 
-Para iniciar un servidor `smb` y conectarse a uno se instalan los siguientes paquetes:
+## Configurando un servidor SMB
+
+Para iniciar un servidor `SMB` y conectarse a uno se instalan los siguientes paquetes:
 
 ```
 sudo apt update
@@ -525,17 +529,24 @@ sudo apt install samba samba-common-bin smbclient cifs-utils
 Un ejemplo para crear un directorio es el siguiente
 
 ```
-mkdir /samba/directory/
-chmod 777 /samba/directory/
-sudo chown -R nobody:nogroup /samba/directory/
-sudo chmod -R (777)/(740) /samba/directory/
-sudo chgrp -R sambashare /samba/directory/
+mkdir /home/<username>/shared/
+sudo chmod -R (777)/(740) /home/<username>/shared/
 ```
 
-Se crea un usuario nuevo con `useradd <username>` y se crea una contraseña para el
-servidor `Samba` para este nuevo usuario con `sudo smbpasswd -a <username>`.
+Se pude crear un nuevo usuario con `useradd <username>` y usar los siguientes
+comandos
 
-Se agrega lo siguiente
+```
+mkdir /home/<username>/shared/
+sudo chown -R nobody:nogroup /home/<username>/shared/
+sudo chmod -R (777)/(740) /home/<username>/shared/
+sudo chgrp -R sambashare /home/<username>/shared/
+```
+
+Luego de configurar el directorio para el servidor `Samba` se crea una contraseña para
+el usuario con `sudo smbpasswd -a <username>`.
+
+Despues de configurar el servidor, se agrega lo siguiente
 
 ```
 [share]
@@ -549,13 +560,15 @@ browsable = yes
 
 al archivo `/etc/samba/smb.conf`
 
-Para revisar los puntos de montaje se usa el comando:
+## Montando el servidor SMB en `Linux`
+
+Para revisar los puntos de montaje desde un cliente de `Linux` se usa el comando:
 
 ```
 smbclient -L <hostname/IPaddress> -U <username>
 ```
 
-Para conectarse al servidor se puede usar el siguiente comando:
+Para conectarse al servidor se puede usar el comando:
 
 ```
 sudo mount.cifs //<hostname or IP address>/<share> /mount/target/ -o user=<name>
@@ -566,6 +579,31 @@ o
 ```
 sudo mount -t cifs //<hostname or IP address>/<share> /mount/target/ -o user=<name>
 ```
+
+## Montando el servidor SMB en `Windows`
+
+Para montar un sistema de archivos `SMB` en una unidad de `Windows` se selecciona la
+opción ***Conectar a una unidad de red...*** en el explorador de archivos
+
+![](.src/smb1.png)
+
+En la ventana emergente se ingresa la letra de unidad, la dirección del servidor, el
+directorio a montar y se selecciona la opción ***Conectar con otras credenciales***
+
+![](.src/smb2.png)
+
+En la última ventana se ingresan las credenciales del servidor
+
+![](.src/smb3.png)
+
+Otra forma de montar un sistema de archivos `SMB` es por medio de comandos con
+
+```
+net use x: \\192.168.1.128\Photos /user:ianemn ianemn
+```
+
+Este comando se puede dejar en un script de batch y ejecutar el archivo para montar
+en la unidad de forma más sencilla.
 
 # nfs
 
