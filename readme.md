@@ -206,7 +206,9 @@ deseado y su estructura de directorios.
 - Archivos necesarios para ***xemu*** `~/.var/app/app.xemu.xemu/data/xemu/xemu/`.
 - Para variables de entorno `/etc/profile`, `/etc/environment` y `/etc/environment.d/`.
 
-# XAMPP
+# MySQL
+
+## XAMPP
 
 - `sudo /opt/lampp/lampp startmysql` para iniciar el servidor MySQL.
 - `/opt/lampp/bin/mysql -u root -p` para iniciar MySQL como root.
@@ -705,7 +707,7 @@ sudo mount -t nfs -o proto=tcp,port=2049 <nfs-server-IP>:/ /mount/target
 
 al archivo `/etc/fstab`
 
-# VirtualBox
+# [VirtualBox](https://www.kali.org/docs/virtualization/install-virtualbox-host/)
 
 ```
 sudo apt update
@@ -758,7 +760,7 @@ export WINEPATH=$HOME/myapp
 ```
 a `~/.bashrc` o `~/.zshrc`
 
-# Flatpak
+# [Flatpak](https://www.kali.org/docs/tools/flatpak/)
 
 ```
 sudo apt update
@@ -767,7 +769,7 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 sudo apt install gnome-software-plugin-flatpak
 ```
 
-# Tor
+# [Tor](https://www.kali.org/docs/tools/tor/)
 
 ```
 sudo apt update
