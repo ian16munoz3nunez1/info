@@ -327,8 +327,11 @@ Ejemplos de sustituciones:
 
 - `tmux ls` para listar las sesiones.
 - `tmux a -t <session>` para entrar en la sesión \<session\>.
+- `tmux new` para crear una sesion con nombre predeterminado.
 - `tmux new -s <session>` para crear una nueva sesión con el nombre \<session\>.
 - `tmux kill-session -t <session>` para matar una sesión de tmux.
+- `tmux kill-session -aC` para matar todas las sesions de tmux.
+- `tmux rename-session -t <old_session_name> <new_session_name>` para renombrar la sesión.
 
 Dentro de una sesión usando el prefijo `Ctrl+b`:
 
