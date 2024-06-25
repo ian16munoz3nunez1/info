@@ -502,6 +502,23 @@ serial con la esp32cam.
 - `ssh-keygen -f '/home/<username>/.ssh/known_hosts' -R '<IPaddress>'` para eliminar un
 host del archivo.
 
+# RDP
+
+## Usando rdesktop
+
+- `rdesktop <hostIP> -u <username> -p <password> -f` crea una conexión a un escritorio
+remoto en `Windows`.
+
+Para usar `rdesktop` para conectarse a un servidor RDP, se debe hacer la siguiente
+configuración en el servidor `Windows`.
+
+![](.src/rdp.png)
+
+## Usando remmina
+
+- `remmina rdp://<username>:<password>@<hostIP>` crea una conexión a un escritorio
+remoto de `Windows`.
+
 # vnc
 
 En `x11` con `x11vnc` (`sudo apt install x11vnc`).
