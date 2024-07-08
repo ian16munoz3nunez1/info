@@ -222,6 +222,29 @@ siguiente valor desde el editor del registro
 
 ![](.src/activateWindows.png)
 
+## Autologin
+
+Para activar el autologin en windows primero se tiene que asignar el valor de
+`DevicePasswordLessBuildVersion` a 0
+
+![](.src/passwordless.png)
+
+Después, se ejecuta el comando `netplwiz` para terminar de activar el inicio de
+sesión automático
+
+![](.src/autologin.png)
+
+Se desmarca el checkbox con la opción
+**Los usuarios deben escribir su nombre y contraseña para usar el equipo**
+al presionar **Aplicar** se abre una nueva ventana en la que se tienen que
+ingresar las credenciales del usuario con el que se quiere iniciar sesión
+automáticamente
+
+![](.src/autologinCredentials.png)
+
+al pulsar **Aceptar** y cerrar las ventanas, se iniciará la sesión del usuario
+automáticamente al reiniciar o en la próxima vez que se encienda el equipo.
+
 # MySQL
 
 ## XAMPP
