@@ -43,6 +43,8 @@ de sistema de archivos `<type>` y le asigna el nombre `<unitName>`.
 - `sudo systemctl enable <service_name>` para habilitar un servicio.
 - `sudo systemctl list-unit-files --type service --all` para mostrar todos los servicios.
 - `sudo systemctl | grep running` para ver los servicios que se están corriendo.
+- `sudo ufw allow 1714:1764/tcp` y `sudo ufw allow 1714:1764/udp` para habilitar los
+puertos usados por KDE connect.
 - `timedatectl` para ver la configuracion de fecha y hora y el servicio NTP.
 - `umount <mountpoint>` para desmontar un disco.
 - `uname -a` para tener información del sistema.
@@ -116,9 +118,10 @@ agregar una ip a una interfaz de red.
 - `sudo ip link set <iface> down` para desactivar una interfaz de red.
 - `sudo ifconfig <iface> <ip_address> netmask <netmask> broadcast <broadcast>` para agregar una direccion ip
 a una interfaz de red.
-    - `sudo ifconfig wlan0 192.168.1.64 netmask 255.255.255.0` como ejemplo.
+    - `sudo ifconfig wlan0 192.168.1.64 netmask 255.255.255.0 broadcast 192.168.1.255` como ejemplo.
+    - `sudo ifconfig eth1 192.168.4.4` para configurar una ip en una interfaz ethernet.
 - `sudo route add default gw <gateway> <iface>` para cambiar la puerta de enlace.
-    - `sudo route add default 192.168.1.1 wlan0` como ejemplo.
+    - `sudo route add default gw 192.168.1.1 wlan0` como ejemplo.
 - `sudo dhclient -r` para liberar la direccion ip actual.
 - `sudo dhclient` para renovar una direccion ip.
 - `sudo networking restart` para reiniciar el servicio de red.
@@ -251,6 +254,31 @@ automáticamente al reiniciar o en la próxima vez que se encienda el equipo.
 
 - `sudo /opt/lampp/lampp startmysql` para iniciar el servidor MySQL.
 - `/opt/lampp/bin/mysql -u root -p` para iniciar MySQL como root.
+
+## MariaDB
+
+- `sudo apt install mariadb-server` para instalar el servidor y servicio de MariaDB
+- `sudo mysql` luego de instalar MariaDB para entrar a mysql como root y configurar
+o crear nuevos usuarios, bases de datos y tablas.
+- `GRANT ALL ON *.* TO '<user_name>'@'<host_address>' IDENTIFIED BY '<password>'
+WITH GRANT OPTION;` para crear un usuario con todos los permisos a tablas y bases de
+datos
+- `FLUSH PRIVILEGES;` luego de crear un nuevo usuario para refrescar la tabla y que
+los cambios tomen efecto.
+- `mysql -u <user_name> -p` para ingresar como un usuario especifico.
+- `mysql -h <host_address> -u <user_name> -p` para ingresar como un usuario especifico
+a un servidor remoto.
+
+### Configurar conexión remota a la base de datos
+
+1. En el servidor, buscar el archivo `/etc/mysql/mysql.conf.d/mysqld.cnf` o
+`/etc/mysql/mariadb.conf.d/50-server.cnf` o buscar la cadena `bind-address` en el
+directorio `/etc/mysql/` y cambiar el valor de `bind-address` de `127.0.0.1` a
+`0.0.0.0`.
+2. Reiniciar el servicio de `mysql` o `mariadb`.
+3. Habilitar el puerto de ***MySQL*** en el firewall `ufw` con el comando
+`sudo ufw allow from <ip_address> to any port 3306` o `sudo ufw allow 3306` (Esto en
+caso de tener el firewall instalado y activado).
 
 # jar
 
