@@ -1,16 +1,24 @@
-# linux
+# debian
 
 - `apt-cache showpkg <package>` para mostrar información de un paquete.
+- `apt-file search /usr/bin/<command>` para mostrar a que paquete pertenece un
+comando.
+- `apt list --installed` para mostrar los paquetes instalados.
+- `apt list --installed | grep <package>` para buscar un paquete descargado.
+- `apt list --upgradable` para mostrar paquetes disponibles para actualizar.
 - `cal` o `ncal` para ver un calendario o la fecha actual.
 - `cat /etc/shells` para ver las terminales disponibles.
 - `date` para ver la fecha y hora.
 - `df -h` muestra particiones, su tamaño y el espacio usado y disponible.
 - `dpkg-query -W <package>` para mostrar la versión de un paquete instalado.
+- `dpkg -S $(which <command>)` o `dpkg -S /usr/bin/<command>` para conocer a que
+paquete pertenece un comando.
 - `echo $SHELL`, `echo $0` o `echo $TERM` para ver el tipo de terminal.
 - `echo <password> | sudo -S <comando>` para ejecutar un comando con permisos de
 administrador
 - `echo <password> | sudo -u <user_name> -S <comando>` para ejecutar un comando
 como el usuario indicado.
+- `echo <msg> > /dev/pts/<n>` para mostrar un mensaje en la terminal `<n>`.
 - `eject <device>` para ejecutar un disco.
 - `exiftool [-|h|v] <filename>` para ver los metadatos de un archivo.
 - `exiftool -tag="<label>"` para agregar un tag o metadato al archivo.
@@ -18,6 +26,8 @@ como el usuario indicado.
 directorio actual.
 - `find -name '*.<ext>' -type f` para listar archivos con cierta extensión.
 - `find -name '*.<ext>' -type f -delete` para eliminar archivos con cierta extensión.
+- `find -type f -print0 | xargs -0 -I % md5sum % | tee <file>` para crear un archivo
+checksum con md5.
 - `getent passwd <username>` y `getent group <username>` muestran información del usuario.
 - `groups` muestra los grupos del sistema.
 - `ln -s <origin_absolute_path> <destination_absolute_path>` para crear un enlace
@@ -46,10 +56,12 @@ de sistema de archivos `<type>` y le asigna el nombre `<unitName>`.
 - `sudo ufw allow 1714:1764/tcp` y `sudo ufw allow 1714:1764/udp` para habilitar los
 puertos usados por KDE connect.
 - `timedatectl` para ver la configuracion de fecha y hora y el servicio NTP.
+- `tty` para ver el numero de terminal actual.
 - `umount <mountpoint>` para desmontar un disco.
 - `uname -a` para tener información del sistema.
 - `users` muestra los usuarios del sistema.
 - `whoami` muestra el usuario actual y `who` muestra información del usuario.
+- `xev` para ver el valor de las teclas en el teclado.
 
 ## ports
 
@@ -181,14 +193,22 @@ Ubicaciones para configurar interfaces de red:
 - `groupmod` para modificar un grupo.
 - `groupdel` para eliminar un grupo.
 - `chown <user>:<group> <files>` para cambiar el propietario de un archivo.
+- `chmod` para cambiar los permisos de un archivo o directorio.
 - `chgrp` para cambiar el grupo propiertario de un archivo.
-- `useradd -m -s /bin/<shelltype> <username>` para crear un usuario con el `<shelltype>`.
+- `useradd -m -d /home/<username> -s /bin/<shelltype> <username>` para crear un
+usuario con el `<shelltype>` y asignar el directorio `/home/<username>` al usuario.
 deseado y su estructura de directorios.
 - `passwd <username>` para generar una contraseña para el usuario `<username>`.
 - `usermod -aG sudoers <username>` para agregar un usuario al grupo de `sudoers`.
-- `usermod -d <dirname> <username>` para asignar el directorio `<dirname>` al usuario `<username>`.
+- `usermod -d <dirname> <username>` para asignar el directorio `<dirname>` al usuario
+`<username>`.
+- `echo $USER` para ver el nombre de usuario.
 - `groups <username>` para ver los grupos a los que pertenece el usuario `<username>`.
+- `id` para mostrar el id y nombre de los grupos a los que pertenece el usuario.
 - `id -Gn <username>` para ver los grupos a los que pertenece el usuario `<username>`.
+- `w` para ver lo que hacen los usuarios.
+- `whoami` para ver el nombre de usuario.
+- `cut -d: -f1 /etc/passwd` para ver todos los usuarios.
 
 ## paths
 
@@ -208,6 +228,20 @@ deseado y su estructura de directorios.
 - Datos guardados de ***PPSSPP*** `~/.var/app/org.ppsspp.PPSSPP/config/ppsspp/PSP/SAVEDATA/`.
 - Archivos necesarios para ***xemu*** `~/.var/app/app.xemu.xemu/data/xemu/xemu/`.
 - Para variables de entorno `/etc/profile`, `/etc/environment` y `/etc/environment.d/`.
+
+# opensuse
+
+- `zypper update` para actualizar el sistema.
+
+## Creando usuario con sudo habilitado
+
+1. `zypper install sudo`.
+2. `zypper install system-group-wheel`.
+3. `zypper install system-user-mail`.
+4. `useradd -m -d /home/<username> -s /usr/bin/<shell>`.
+5. `passwd <username>`.
+6. `usermod -aG wheel <username>`.
+7. Agregar `%wheel ALL=(ALL:ALL) ALL` a `/etc/sudoers`.
 
 # windows
 
@@ -483,7 +517,7 @@ deseada con el nombre `<branchname>`.
 - `git push origin <branchname>` sube al repositorio remoto la rama `<branchname>` o
 actualiza los cambios en este.
 - `git push -f origin` fuerza los cambios en el repositorio remoto.
-- `git worktree add <path>` para crear un nuevo arbol de trabajo.
+- `git worktree add <path> <branch>` para crear un nuevo arbol de trabajo.
 - `git worktree list` para listar los arboles de trabajo actuales.
 - `git worktree prune` para eliminar los arboles de trabajo que ya no son necesarios o
 que ya no existen.
