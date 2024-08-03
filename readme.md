@@ -232,6 +232,11 @@ deseado y su estructura de directorios.
 # opensuse
 
 - `zypper update` para actualizar el sistema.
+- `zypper search --intalled-only` para mostrar los paquetes instalados.
+- `zypper install iputils` para instalar herramientas de red.
+- `zypper install net-tools-deprecated` para instalar herramientas de red.
+- `zypper install gcc-g++` para instalar el compilador g++.
+- `zypper install go` para instalar golang.
 
 ## Creando usuario con sudo habilitado
 
