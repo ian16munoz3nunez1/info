@@ -472,7 +472,7 @@ Dentro de una sesión usando el prefijo `Ctrl+b`:
 - `git config --global user.email <email>` configura el email de usuario.
 - `git config --global core.editor <editor>` configura el editor por defecto.
 - `git config --global alias.<alias> '<command>'` configura los alias usados por git.
-- `git config --global init.defaultBranch <name` configura el nombre por default de la
+- `git config --global init.defaultBranch <name>` configura el nombre por default de la
 rama.
 - `git config --global --edit` para editar el archivo de configuración de git.
 - `git config --list --show-origin` muestra informacion de la configuracion, si se
@@ -488,11 +488,15 @@ encuentra en un respositorio, muestra informacion del repo.
 - `git commit --amend` agrega los cambios al último commit creado, esto sin crear uno
 nuevo, esto sirve para agregar cambios pequeños sin necesidad de agregarlos a un nuevo
 commit.
+- `git commit --amend --no-edit` para enmendar cambios sin abrir el editor.
 - `git branch` muestra todas las ramas del repo.
 - `git branch -a` muestra todas las ramas del repo, incluyendo las remotas.
 - `git branch <branchname>` crea una nueva rama.
 - `git branch -d <branchname>` elimina una rama.
 - `git branch -D <branchname>` fuerza la eliminación de una rama.
+- `git branch -m <branchname>` cambia el nombre de la rama actual a `<branchname>`.
+- `git branch -M <branchname>` fuerza el cambio del nombre de la rama actual a
+`<branchname>`.
 - `git branch -v` muestra el nombre de rama, su hash y su commit.
 - `git checkout <commithash/branchname>` para moverse a un commit o rama.
 - `git checkout -b <branchname>` crea la rama `<branchname>` y se mueve a esta.
@@ -511,6 +515,7 @@ un commit.
 - `git diff HEAD~# -- <path>` devuelve la diferencia que hay en el `<path>` entre el
 commit que se encuentra # commits detras de `HEAD` y el commit actual.
 - `git merge <branchname>` mezcla la rama `<branchname>` con la rama actual.
+- `git cherry-pick <branch/commitHash>` para pasar toda la info de un commit a otra rama.
 - `git revert <commithash>` corrige un error en algún commit y corrige los cambios en el
 código.
 - `git reset [--hard|--soft] <commithash>` regresa el repo al commit deseado.
@@ -521,12 +526,13 @@ deseada con el nombre `<branchname>`.
 - `git remote remove origin` elimina la *url* a la que apunta *origin*.
 - `git push origin <branchname>` sube al repositorio remoto la rama `<branchname>` o
 actualiza los cambios en este.
-- `git push -f origin` fuerza los cambios en el repositorio remoto.
+- `git push -f origin <branchname>` fuerza los cambios en el repositorio remoto.
+- `git reflog` para ver un historial de lo que se ha hecho en el repositorio.
 - `git worktree add <path> <branch>` para crear un nuevo arbol de trabajo.
 - `git worktree list` para listar los arboles de trabajo actuales.
 - `git worktree prune` para eliminar los arboles de trabajo que ya no son necesarios o
 que ya no existen.
-- `git worktree remove` para eliminar un arbol de trabajo.
+- `git worktree remove <path>` para eliminar un arbol de trabajo.
 - `git archive --format tar --output <file_name>.tar <branch_name>` para crear un
 archivador de una rama.
 - `git stash` (investigar sobre el comando).
@@ -874,6 +880,7 @@ export WINEARCH=win32
 export WINEPATH=$HOME/myapp
 wineboot --init winetricks
 ```
+
 Y agregar
 
 ```
@@ -881,7 +888,10 @@ export WINEPREFIX=$HOME/myapp/prefix
 export WINEARCH=win32
 export WINEPATH=$HOME/myapp
 ```
+
 a `~/.bashrc` o `~/.zshrc`
+
+- `winetricks dotnet45` para instalar ***.NET***
 
 # [Flatpak](https://www.kali.org/docs/tools/flatpak/)
 
@@ -937,6 +947,61 @@ Para ver la información del disco virtual:
 ```
 qemu-img info nameOfImage.qcow2
 ```
+
+# [Docker](https://www.kali.org/docs/containers/installing-docker-on-kali/)
+
+Para instalar docker
+
+- `sudo apt install -y docker.io`
+- `sudo systemctl enable docker --now`
+- `sudo usermod -aG docker $USER`
+
+Para instalar docker-ce
+
+```
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian bookworm stable" | \
+sudo tee /etc/apt/sources.list.d/docker.list
+```
+
+```
+curl -fsSL https://download.docker.com/linux/debian/gpg |
+sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+```
+
+- `sudo apt update` para actualizar los repos.
+- `sudo apt install -y docker-ce docker-ce-cli containerd.io` para instalar docker-ce.
+
+Para instalar docker compose
+
+```
+sudo apt install docker-compose-plugin
+```
+
+- `docker pull ubuntu` para instalar Ubuntu.
+- `docker pull opensuse/leap` para instalar openSUSE Leap.
+- `docker pull jenkins/jenkins` para instalar Jenkins.
+- `docker images` para listar las imagenes instalads.
+- `docker ps` para ver los procesos corriendo.
+- `docker ps -a` para ver todos los procesos.
+- `docker start <process_hash>` para iniciar un proceso.
+- `docker attach <process_hash>` para usar un proceso.
+- `Ctrl+P+Q` dentro de un proceso para salir.
+- `docker stop <process_hash>` para detener un proceso.
+- `docker rm <process_hash>` para eliminar un proceso.
+- `docker rmi <image_hash/image_name>` para eliminar una imagen.
+
+## Imagenes
+
+- Ubuntu
+- openSUSE
+- Jenkins
+- Docker-osX
+- Gazebo
+- ROS
+- Dart
+- Swift
+- Oracle Linux
+- Amazon Linux
 
 # yt-dlp
 
