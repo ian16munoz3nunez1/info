@@ -38,6 +38,7 @@ simbolico a un archivo.
 - `lsblk` muestra los discos, sus particiones, tamaño y el tipo de sistema de archivos.
 - `lscpu` para tener información del equipo.
 - `lsmem` para tener información de la memoria.
+- `mcs <filename>` para compilar un archivo `.cs` (mono).
 - `mount <device> <mountpoint>` para montar un disco conectado.
 - `mount -o gid=<gid>,uid=<uid> <device> <mountpoint>` para montar un dispositivo con
 permisos para el grupo y usuario asignado.
@@ -60,6 +61,7 @@ puertos usados por KDE connect.
 - `umount <mountpoint>` para desmontar un disco.
 - `uname -a` para tener información del sistema.
 - `users` muestra los usuarios del sistema.
+- `watch -n 1 "<command>"` para ver la salida de un comando cada segundo.
 - `whoami` muestra el usuario actual y `who` muestra información del usuario.
 - `xev` para ver el valor de las teclas en el teclado.
 
@@ -137,7 +139,8 @@ a una interfaz de red.
 - `sudo dhclient -r` para liberar la direccion ip actual.
 - `sudo dhclient` para renovar una direccion ip.
 - `sudo networking restart` para reiniciar el servicio de red.
-- `curl ifconfig.me` o `ifconfig.me/all` para tener información pública del equipo.
+- `curl ifconfig.me`, `ifconfig.me/all`, `curl -4 ifconfig.me`, `curl icanhazip.com`
+o `curl -4 icanhazip.com` para tener información pública del equipo.
 - `hostname -f|i|a` para conocer el información de nuestro host.
 - `ifconfig` o `ip a` para ver información de red del equipo.
 - `iwconfig` para ver información de la red a la que estamos conectados.
@@ -150,6 +153,8 @@ un formato multilinea.
 - `ping <IP>` para realizar una solicitud ICMP a un host.
 - `route -n` muestra información de las tablas de enrutamiento de IP.
 - `ss -4` para mostrar solo los sockets de versión IPv4.
+- `wget ftp://<user>:<password>@<hostname>/path/to/file` para descargar archivos
+de un servidor ftp.
 - `sudo netstat -plnt` para mostrar los puertos abiertos.
 - `sudo ufw enable` habilita el firewall `ufw` de linux.
 - `sudo ufw disable` deshabilita el firewall `ufw` de linux.
@@ -500,6 +505,8 @@ commit.
 - `git branch -v` muestra el nombre de rama, su hash y su commit.
 - `git checkout <commithash/branchname>` para moverse a un commit o rama.
 - `git checkout -b <branchname>` crea la rama `<branchname>` y se mueve a esta.
+- `git checkout <commithash/branchname> -- path` para copiar archivos desde un commit o
+rama a otra.
 - `git log` muestra los commits realizados a detalle.
 - `git log -p` muestra los commits realizados y los cambios en el código.
 - `git log --oneline` muestra los commits en una sola línea.
@@ -609,6 +616,7 @@ serial con la esp32cam.
 
 - `systemctl enable ssh` para iniciar el servicio ssh desde el arranque.
 - `ssh-keygen` para generar una clave ssh en `~/.ssh`.
+- `ssh-keygen -t rsa` para generar una clave ssh rsa en `~/.ssh`.
 - `ssh-copy-id <username>@<IP>` para copiar la clave ssh a un equipo.
 - `ssh <username>@<IP> -p 8022` para conectarse con Termux.
 - `ssh-keygen -f '/home/<username>/.ssh/known_hosts' -R '<IPaddress>'` para eliminar un
