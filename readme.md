@@ -1000,16 +1000,17 @@ sudo apt install docker-compose-plugin
 
 ## Imagenes
 
-- Ubuntu
-- openSUSE
-- Jenkins
+- [Ubuntu](https://hub.docker.com/_/ubuntu)
+- [openSUSE](https://hub.docker.com/r/opensuse/leap)
+- [Jenkins](https://hub.docker.com/r/jenkins/jenkins)
+- [GitLab](https://hub.docker.com/r/gitlab/gitlab-ee)
 - Docker-osX
-- Gazebo
-- ROS
-- Dart
-- Swift
-- Oracle Linux
-- Amazon Linux
+- [Gazebo](https://hub.docker.com/_/gazebo)
+- [ROS](https://hub.docker.com/_/ros)
+- [Dart](https://hub.docker.com/_/dart)
+- [Swift](https://hub.docker.com/_/swift)
+- [Oracle Linux](https://hub.docker.com/_/oraclelinux)
+- [Amazon Linux](https://hub.docker.com/_/amazonlinux)
 
 # yt-dlp
 
