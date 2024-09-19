@@ -292,6 +292,20 @@ automáticamente
 al pulsar **Aceptar** y cerrar las ventanas, se iniciará la sesión del usuario
 automáticamente al reiniciar o en la próxima vez que se encienda el equipo.
 
+## Run
+
+Para ejecutar archivos al arrancar el sistema se ejecuta el comando
+
+```
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run /v <value_name> /t REG_SZ /d "<file_name>" /f
+```
+
+Para eliminar el valor del ***regedit*** se ejecuta el comando
+
+```
+reg delete HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run /v <value_name> /f
+```
+
 # MySQL
 
 ## XAMPP
