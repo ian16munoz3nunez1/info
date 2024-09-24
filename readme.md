@@ -8,6 +8,8 @@ comando.
 - `apt list --upgradable` para mostrar paquetes disponibles para actualizar.
 - `cal` o `ncal` para ver un calendario o la fecha actual.
 - `cat /etc/shells` para ver las terminales disponibles.
+- `crontab -e` para programar y ejecutar tareas.
+- `crontab -l` para listar las tareas que se ejecutan constantemente.
 - `date` para ver la fecha y hora.
 - `df -h` muestra particiones, su tamaño y el espacio usado y disponible.
 - `dpkg-query -W <package>` para mostrar la versión de un paquete instalado.
@@ -32,6 +34,8 @@ checksum con md5.
 - `groups` muestra los grupos del sistema.
 - `ln -s <origin_absolute_path> <destination_absolute_path>` para crear un enlace
 simbolico a un archivo.
+- `ln -sfn /usr/share/zoneinfo/America/Mexico_City /etc/localtime` para cambiar la zona
+horaria a la de México.
 - `ls | wc -l` para contar el número de archivos en un directorio.
 - `ls -d */` o `ls -F | grep /` para listar los directorios.
 - `ls -l /dev/disk/by-uuid` o `ls -l /dev/disk/by-label` para listar los discos conectados.
@@ -186,8 +190,56 @@ conexiones de entrada o salida.
 Ubicaciones para configurar interfaces de red:
 
 - `/etc/network/interfaces`
+
+```
+auto ethX
+iface ethX inet static
+    address <ip_address/192.168.4.4>
+    netmask <netmask/255.255.255.0>
+    network <network/192.168.4.0>
+    broadcast <broadcast/192.168.4.255>
+```
+
 - `/etc/netplan/`
+
 - `/etc/NetworkManager/system-connections`
+
+```
+[connection]
+id=<connectionID>
+uuid=<uuid>
+type=wifi
+timestamp=1716697291
+
+[wifi]
+mode=infrastructure
+ssid=<ssid>
+
+[wifi-security]
+key-mgmt=wpa-psk
+psk=<password>
+
+[ipv4]
+method=manual
+address1=<address>/<netmask>,<gateway>
+address1=192.168.1.64/24,192.168.1.1
+
+[ipv6]
+addr-gen-mode=stable-privacy
+ip6-privacy=2
+method=auto
+
+[proxy]
+```
+
+- `/etc/hosts`
+
+```
+127.0.0.1       localhost
+127.0.1.1       ian.kali        ian
+192.168.1.128   rpi
+192.168.1.100   win10
+```
 
 ## users
 
@@ -252,6 +304,20 @@ deseado y su estructura de directorios.
 5. `passwd <username>`.
 6. `usermod -aG wheel <username>`.
 7. Agregar `%wheel ALL=(ALL:ALL) ALL` a `/etc/sudoers`.
+
+# Raspberry Pi
+
+## Configuracion
+
+```
+sudo raspi-config
+```
+
+## Pinout
+
+```
+pinout
+```
 
 # windows
 
