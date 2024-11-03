@@ -157,8 +157,6 @@ un formato multilinea.
 - `ping <IP>` para realizar una solicitud ICMP a un host.
 - `route -n` muestra información de las tablas de enrutamiento de IP.
 - `ss -4` para mostrar solo los sockets de versión IPv4.
-- `wget ftp://<user>:<password>@<hostname>/path/to/file` para descargar archivos
-de un servidor ftp.
 - `sudo netstat -plnt` para mostrar los puertos abiertos.
 - `sudo ufw enable` habilita el firewall `ufw` de linux.
 - `sudo ufw disable` deshabilita el firewall `ufw` de linux.
@@ -701,6 +699,20 @@ serial con la esp32cam.
 - `ssh <username>@<IP> -p 8022` para conectarse con Termux.
 - `ssh-keygen -f '/home/<username>/.ssh/known_hosts' -R '<IPaddress>'` para eliminar un
 host del archivo.
+
+# ftp
+
+Agregar las líneas:
+
+```
+pasv_min_port=30000
+pasv_max_port=40000
+```
+
+al archivo `/etc/vsftpd.conf`
+
+- `wget ftp://<user>:<password>@<hostname>/path/to/file` para descargar archivos
+de un servidor ftp.
 
 # RDP
 
