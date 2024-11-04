@@ -6,12 +6,14 @@ comando.
 - `apt list --installed` para mostrar los paquetes instalados.
 - `apt list --installed | grep <package>` para buscar un paquete descargado.
 - `apt list --upgradable` para mostrar paquetes disponibles para actualizar.
+- `apt policy <package>` para ver el estado de un paquete.
 - `cal` o `ncal` para ver un calendario o la fecha actual.
 - `cat /etc/shells` para ver las terminales disponibles.
 - `crontab -e` para programar y ejecutar tareas.
 - `crontab -l` para listar las tareas que se ejecutan constantemente.
 - `date` para ver la fecha y hora.
 - `df -h` muestra particiones, su tamaño y el espacio usado y disponible.
+- `dmesg -T -x` para listar los mensajes del buffer del kernel.
 - `dpkg-query -W <package>` para mostrar la versión de un paquete instalado.
 - `dpkg -S $(which <command>)` o `dpkg -S /usr/bin/<command>` para conocer a que
 paquete pertenece un comando.
@@ -30,8 +32,10 @@ directorio actual.
 - `find -name '*.<ext>' -type f -delete` para eliminar archivos con cierta extensión.
 - `find -type f -print0 | xargs -0 -I % md5sum % | tee <file>` para crear un archivo
 checksum con md5.
+- `free -h` para ver la RAM utilizada.
 - `getent passwd <username>` y `getent group <username>` muestran información del usuario.
 - `groups` muestra los grupos del sistema.
+- `init` para enviar comandos de control a init, modo de rescate, apagado, reinicio, etc.
 - `ln -s <origin_absolute_path> <destination_absolute_path>` para crear un enlace
 simbolico a un archivo.
 - `ln -sfn /usr/share/zoneinfo/America/Mexico_City /etc/localtime` para cambiar la zona
@@ -39,6 +43,7 @@ horaria a la de México.
 - `ls | wc -l` para contar el número de archivos en un directorio.
 - `ls -d */` o `ls -F | grep /` para listar los directorios.
 - `ls -l /dev/disk/by-uuid` o `ls -l /dev/disk/by-label` para listar los discos conectados.
+- `lsb_release -a` muestra información del release del sistema.
 - `lsblk` muestra los discos, sus particiones, tamaño y el tipo de sistema de archivos.
 - `lscpu` para tener información del equipo.
 - `lsmem` para tener información de la memoria.
@@ -60,12 +65,17 @@ de sistema de archivos `<type>` y le asigna el nombre `<unitName>`.
 - `sudo systemctl | grep running` para ver los servicios que se están corriendo.
 - `sudo ufw allow 1714:1764/tcp` y `sudo ufw allow 1714:1764/udp` para habilitar los
 puertos usados por KDE connect.
+- `telnet mapscii.me` para ver un mapa desde terminal.
 - `timedatectl` para ver la configuracion de fecha y hora y el servicio NTP.
 - `tty` para ver el numero de terminal actual.
 - `umount <mountpoint>` para desmontar un disco.
 - `uname -a` para tener información del sistema.
+- `uname -srm` muestra información del kernel.
+- `uptime` para mostrar cuanto tiempo el sistema ha estado corriendo, entre otra información.
 - `users` muestra los usuarios del sistema.
+- `w` muestra quien ha iniciado sesión y que está haciendo.
 - `watch -n 1 "<command>"` para ver la salida de un comando cada segundo.
+- `whereis <command>` o `which <command>` para mostrar la ubicación de un archivo ejecutable.
 - `whoami` muestra el usuario actual y `who` muestra información del usuario.
 - `xev` para ver el valor de las teclas en el teclado.
 
@@ -138,6 +148,8 @@ agregar una ip a una interfaz de red.
 a una interfaz de red.
     - `sudo ifconfig wlan0 192.168.1.64 netmask 255.255.255.0 broadcast 192.168.1.255` como ejemplo.
     - `sudo ifconfig eth1 192.168.4.4` para configurar una ip en una interfaz ethernet.
+- `sudo ifconfig <iface> down` para matar una interfaz de red.
+- `sudo ifconfig <iface> up` para levantar una interfaz de red.
 - `sudo route add default gw <gateway> <iface>` para cambiar la puerta de enlace.
     - `sudo route add default gw 192.168.1.1 wlan0` como ejemplo.
 - `sudo dhclient -r` para liberar la direccion ip actual.
@@ -157,6 +169,7 @@ un formato multilinea.
 - `ping <IP>` para realizar una solicitud ICMP a un host.
 - `route -n` muestra información de las tablas de enrutamiento de IP.
 - `ss -4` para mostrar solo los sockets de versión IPv4.
+- `traceroute <host>` para seguir la ruta de paquetes a un host.
 - `sudo netstat -plnt` para mostrar los puertos abiertos.
 - `sudo ufw enable` habilita el firewall `ufw` de linux.
 - `sudo ufw disable` deshabilita el firewall `ufw` de linux.
@@ -283,6 +296,21 @@ deseado y su estructura de directorios.
 - Datos guardados de ***PPSSPP*** `~/.var/app/org.ppsspp.PPSSPP/config/ppsspp/PSP/SAVEDATA/`.
 - Archivos necesarios para ***xemu*** `~/.var/app/app.xemu.xemu/data/xemu/xemu/`.
 - Para variables de entorno `/etc/profile`, `/etc/environment` y `/etc/environment.d/`.
+
+# Devices and drivers
+
+- `egrep -i 'synap|alps|etps|elan' /proc/bus/input/devices` para buscar dispositivos relacionados al touchpad.
+- `grep -i "Using input driver" /var/log/Xorg.0.log` para buscar los dispositivos de entrada que están siendo usados.
+- `lshw` para listar el hardware y los archivos y carpetas de estos.
+- `lsmod` muestra el estatus de los modulos del kernel.
+- `lspci` muestra los dispositivos detectados y su información.
+- `modinfo` muestra información de los módulos del kernel.
+- `modprobe -a <module>` para agregar un módulo al kernel.
+- `modprobe -r <module>` para remover un módulo del kernel.
+- `sudo evtest /dev/input/event<x>` para testear los eventos de los dispositivos enlazados al evento `<x>`.
+- `xinput --list` muestra los dispositivos de entrada detectados.
+- `xinput --list-props <id>` muestra información del dispositivo de entrada con el id `<id>`.
+- `xmodmap` para modificar y listar la configuración de mapeo de teclado y botones de touchpad.
 
 # opensuse
 
@@ -711,8 +739,8 @@ pasv_max_port=40000
 
 al archivo `/etc/vsftpd.conf`
 
-- `wget ftp://<user>:<password>@<hostname>/path/to/file` para descargar archivos
-de un servidor ftp.
+- `wget ftp://<user>:<password>@<hostname>/path/to/file` para descargar un archivo de un servidor ftp.
+- `wget -r ftp://<user>:<password>@<hostname>/path/to/dir` para descargar todo un directorio de un servidor ftp.
 
 # RDP
 
