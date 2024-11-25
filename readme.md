@@ -65,6 +65,8 @@ de sistema de archivos `<type>` y le asigna el nombre `<unitName>`.
 - `sudo systemctl | grep running` para ver los servicios que se están corriendo.
 - `sudo ufw allow 1714:1764/tcp` y `sudo ufw allow 1714:1764/udp` para habilitar los
 puertos usados por KDE connect.
+- `tar -cvzpf - * | openssl enc -e -aes256 -out <filename>.tgz` para comprimir un archivo encriptado.
+- `openssl enc -d -aes256 -in <filename>.tgz | tar -xvz -C <directory>` para descomprimir un archivo.
 - `telnet mapscii.me` para ver un mapa desde terminal.
 - `timedatectl` para ver la configuracion de fecha y hora y el servicio NTP.
 - `tty` para ver el numero de terminal actual.
