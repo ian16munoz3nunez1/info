@@ -695,6 +695,14 @@ del paquete que es afectado por el commit. Se le conoce como 'scope':
 6. `git init --bare`
 7. `echo "ref: refs/heads/main" > HEAD`
 
+## [git lfs](https://git-lfs.com/)
+
+An open source Git extension for versioning large files
+
+Git Large File Storage (LFS) replaces large files such as audio samples,
+videos, datasets, and graphics with text pointers inside Git, while storing
+the file contents on a remote server like GitHub.com or GitHub Enterprise.
+
 # termux
 
 - `termux-change-repo` para configurar los repositorios de la app.
