@@ -323,6 +323,124 @@ deseado y su estructura de directorios.
 - `zypper install gcc-g++` para instalar el compilador g++.
 - `zypper install go` para instalar golang.
 
+# LSP Servers/Clients
+
+## LSP for C
+
+Instalar el servidor de lenguaje con
+
+```
+sudo apt install clangd
+```
+
+y agregar la entrada
+
+```
+    "c": {
+        "command": ["clangd", "-log=error", "--background-index", "--limit-results=500", "--completion-style=bundled"],
+        "commandDebug": ["clangd", "-log=verbose", "--background-index"],
+        "url": "https://clangd.llvm.org",
+        "highlightingModeRegex": "^(C|ANSI C89|Objective-C)$"
+    }
+```
+
+al archivo `/home/${USER}/.config/kate/lspclient/settings.json`
+
+## LSP for C++
+
+Agregar la entrada
+
+```
+    "cpp": {
+        "use": "c",
+        "highlightingModeRegex": "^(C\\+\\+|ISO C\\+\\+|Objective-C\\+\\+)$"
+    }
+```
+
+## LSP for Golang
+
+Instalar el servidor de lenguaje con
+
+```
+sudo apt install gopls
+```
+
+Y agregar la entrada
+
+```
+    "go": {
+        "command": ["gopls"],
+        "commandDebug": ["gopls", "serve", "-rpc.trace"],
+        "path": ["%{ENV:GOPATH}/bin","%{ENV:HOME}/go/bin", "%{ENV:USERPROFILE}/go/bin"],
+        "rootIndicationFileNames": ["go.mod"],
+        "url": "golang.org/x/tools/gopls",
+        "highlightingModeRegex": "^Go$"
+    }
+```
+
+al archivo `/home/${USER}/.config/kate/lspclient/settings.json`
+
+## LSP for Java
+
+1. Instalar maven con `sudo apt install maven`
+
+2. Clonar el repositorio [JLS](https://github.com/georgewfraser/java-language-server) en `/home/${USER}/.config`
+
+3. Ir al directorio del repo y ejecutar `./scripts/link_linux.sh`
+
+3. Ejecutar `mvn package -DskipTests`
+
+4. Agregar la entrada
+
+```
+    "java": {
+        "command": ["bash","/home/${USER}/.config/java-language-server/dist/lang_server_linux.sh"],
+        "url": "https://github.com/georgewfraser/java-language-server",
+        "highlightingModeRegex": "^Java$"
+    }
+```
+
+## LSP for Python
+
+Instalar el servidor de lenguaje con
+
+```
+sudo apt install python3-pylsp
+```
+
+Y agregar la entrada
+
+```
+    "python": {
+        "command": ["pylsp", "--check-parent-process"],
+        "url": "https://github.com/python-lsp/python-lsp-server",
+        "highlightingModeRegex": "^Python$"
+    }
+```
+
+al archivo `/home/${USER}/.config/kate/lspclient/settings.json`
+
+## LSP for Ruby
+
+Instalar el servidor de lenguaje con
+
+```
+sudo gem install solargraph
+```
+
+Y agregar la entrada
+
+```
+    "ruby": {
+        "command": ["solargraph", "stdio"],
+        "rootIndicationFileNames": ["Gemfile", "Gemfile.lock", "gems.rb", "gems.lock", "Rakefile"],
+        "url": "https://solargraph.org",
+        "highlightingModeRegex": "^Ruby$"
+    }
+```
+
+al archivo `/home/${USER}/.config/kate/lspclient/settings.json`
+
 ## Creando usuario con sudo habilitado
 
 1. `zypper install sudo`.
