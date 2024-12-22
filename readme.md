@@ -323,7 +323,7 @@ deseado y su estructura de directorios.
 - `zypper install gcc-g++` para instalar el compilador g++.
 - `zypper install go` para instalar golang.
 
-# LSP Servers/Clients
+# LSP
 
 ## LSP for C
 
@@ -380,6 +380,20 @@ Y agregar la entrada
 
 al archivo `/home/${USER}/.config/kate/lspclient/settings.json`
 
+## LSP for HTML
+
+1. Instalar ***vscode-html-languageserver*** con `snap install vscode-html-languageserver`
+
+2. Agregar la siguiente entrada al archivo `/home/${USER}/.config/kate/lspclient/settings.json`
+
+```
+    "html": {
+        "command": ["vscode-html-languageserver", "--stdio"],
+        "url": "https://github.com/Microsoft/vscode/tree/main/extensions/html-language-features/server",
+        "highlightingModeRegex": "^HTML$"
+    }
+```
+
 ## LSP for Java
 
 1. Instalar maven con `sudo apt install maven`
@@ -397,6 +411,39 @@ al archivo `/home/${USER}/.config/kate/lspclient/settings.json`
         "command": ["bash","/home/${USER}/.config/java-language-server/dist/lang_server_linux.sh"],
         "url": "https://github.com/georgewfraser/java-language-server",
         "highlightingModeRegex": "^Java$"
+    }
+```
+
+## LSP for LaTex
+
+1. Descargar servidor con `wget 'https://github.com/latex-lsp/texlab/releases/download/v5.21.0/texlab-x86_64-linux.tar.gz'`
+
+2. Mover el archivo dentro del tar a `/usr/bin`
+
+3. Agregar la siguiente entrada al archivo `/home/${USER}/.config/kate/lspclient/settings.json`
+
+```
+    "latex": {
+        "command": ["texlab"],
+        "url": "https://texlab.netlify.com/",
+        "highlightingModeRegex": "^LaTeX$"
+    }
+```
+
+## LSP for MarkDown
+
+1. Descargar servidor con `wget https://github.com/artempyanykh/marksman/releases/download/2024-12-18/marksman-linux-x64`
+
+2. Mover `marksman-linux-x64` a `/usr/bin`
+
+3. Agregar la siguiente entrada al archivo `/home/${USER}/.config/kate/lspclient/settings.json`
+
+```
+    "markdown": {
+        "command": ["marksman","server"],
+        "rootIndicatorFileNames": [".git",".marksman.toml"],
+        "url": "https://github.com/artempyanykh/marksman",
+        "highlightingModeRegex": "^Markdown$"
     }
 ```
 
