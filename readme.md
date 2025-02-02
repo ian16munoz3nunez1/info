@@ -652,8 +652,16 @@ java -jar main.jar
 - `Ctrl+w+s`, `:split` o `:sp` para dividir horizontalmente la pantalla.
 - `Ctrl+w+v`, `:vsplit` o `:vsp` para dividir verticalmente la pantalla.
 - `:tabe` para abrir una nueva pestaña con un archivo o un buffer vacío.
-- `gt` para moverse a la pestaña siguiente.
-- `gT` para moverse a la pestaña anterior.
+- `gt` o `:tabn` para moverse a la pestaña siguiente.
+- `gT` o `:tabp` para moverse a la pestaña anterior.
+- `<n>gt` para cambiar a la pestaña `<n>`.
+- `:tabfirst` para moverse a la primer pestaña.
+- `:tablast` para moverse a la última pestaña.
+- `:tabm <n>` para mover la pestaña a la posición `<n>`.
+
+- `:tabnew <filename>` para cargar un archivo en una nueva pestaña.
+- `vim -p <file1> <file2> <file3>` desde shell para iniciar una sesión vim en distintas pestañas.
+- `:tabf <filename>` para encontrar un archivo en la ruta actual y abrirlo en una nueva pestaña.
 
 ## foldmethod
 
