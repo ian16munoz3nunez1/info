@@ -663,6 +663,12 @@ java -jar main.jar
 - `vim -p <file1> <file2> <file3>` desde shell para iniciar una sesión vim en distintas pestañas.
 - `:tabf <filename>` para encontrar un archivo en la ruta actual y abrirlo en una nueva pestaña.
 
+- `:set ff=dos` para dar el formato ***dos*** al archivo actual
+- `:set ff=unix` para dar el formato ***unix*** al archivo actual
+
+- `:set noexpandtab` para insertar tabulaciones en lugar de espacios
+- `:%retab!` para cambiar espacios por tabulaciones
+
 ## foldmethod
 
 Con `foldmethod=manual`
