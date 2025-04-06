@@ -1153,6 +1153,38 @@ sudo mount -t nfs -o proto=tcp,port=2049 <nfs-server-IP>:/ /mount/target
 
 al archivo `/etc/fstab`
 
+# Qemu
+
+1. Instalar `qemu`
+
+```
+sudo apt install qemu-utils qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager
+```
+
+2. Crear un disco duro virtual de 64G
+
+```
+qemu-img create -f qcow2 <diskName>.qcow2 64G
+```
+
+ver la información del disco con
+
+```
+qemu-img info <diskName>.qcow2
+```
+
+3. Hacer la instalación de un iso en el disco duro virtual
+
+```
+qemu-system-x86_64 -m 8G -smp 2 --enable-kvm -name '<VirtualMachineName>' -boot d -hda <diskName>.qcow2 -cdrom '<isoName>.iso'
+```
+
+4. Una vez realizada la instalación, arrancar desde el disco con
+
+```
+qemu-system-x86_64 -m 8G -smp 2 --enable-kvm -name '<VirtualMachineName>' -boot d -hda <diskName>.qcow2
+```
+
 # [VirtualBox](https://www.kali.org/docs/virtualization/install-virtualbox-host/)
 
 ```
@@ -1178,6 +1210,11 @@ kernel actual.
 5. `sudo modprobe vboxdrv` y `sudo modprobe vboxnetflt` para configurar los módulos de
 VirtualBox.
 6. `sudo usermod -aG vboxusers <username>` para agregar un usuario al grupo de ***VirtualBox***
+
+También se puede intentar, desde la máquina virtual:
+
+1. `sudo usermod -aG vboxsf $(whoami)`
+2. Reiniciar la máquina virtual
 
 # wine
 
