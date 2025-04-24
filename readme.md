@@ -606,6 +606,32 @@ jar -cvmf MANIFEST.MF main.jar main.class
 java -jar main.jar
 ```
 
+# cmake and make
+
+1. Crear un archivo de C++
+2. Crear un archivo `CMakeLists.txt` y agregar lo siguiente
+
+```
+cmake_minimum_required(VERSION 2.8)
+project(helloWorld)
+add_executable(main main.cpp)
+```
+3. Crear un directorio llamado `build` (puede tener cualquier nombre)
+
+4. Moverse al nuevo directorio y ejecutar
+
+```
+cmake
+```
+
+5. Ejecutar en este directorio
+
+```
+make
+```
+
+para generar un archivo binario.
+
 # vim
 
 - `h` para moverse a la izquierda.
