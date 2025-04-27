@@ -606,7 +606,7 @@ jar -cvmf MANIFEST.MF main.jar main.class
 java -jar main.jar
 ```
 
-# cmake and make
+# cmake y make
 
 1. Crear un archivo de C++
 2. Crear un archivo `CMakeLists.txt` y agregar lo siguiente
@@ -621,7 +621,7 @@ add_executable(main main.cpp)
 4. Moverse al nuevo directorio y ejecutar
 
 ```
-cmake
+cmake ..
 ```
 
 5. Ejecutar en este directorio
