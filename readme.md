@@ -957,6 +957,7 @@ al archivo `/etc/vsftpd.conf`
 
 - `wget ftp://<user>:<password>@<hostname>/path/to/file` para descargar un archivo de un servidor ftp.
 - `wget -r ftp://<user>:<password>@<hostname>/path/to/dir` para descargar todo un directorio de un servidor ftp.
+- `curl -u '<user>:<password>' -T '/path/to/file' ftp://remote/path/
 
 # RDP
 
