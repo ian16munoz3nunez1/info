@@ -1330,13 +1330,13 @@ qemu-img info nameOfImage.qcow2
 
 # [Docker](https://www.kali.org/docs/containers/installing-docker-on-kali/)
 
-Para instalar docker
+## Para instalar docker
 
 - `sudo apt install -y docker.io`
 - `sudo systemctl enable docker --now`
 - `sudo usermod -aG docker $USER`
 
-Para instalar docker-ce
+## Para instalar docker-ce
 
 ```
 echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian bookworm stable" | \
@@ -1351,20 +1351,20 @@ sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 - `sudo apt update` para actualizar los repos.
 - `sudo apt install -y docker-ce docker-ce-cli containerd.io` para instalar docker-ce.
 
-Para instalar docker compose
-
-```
-sudo apt install docker-compose-plugin
-```
+## Comandos
 
 - `docker pull ubuntu` para instalar Ubuntu.
 - `docker pull opensuse/leap` para instalar openSUSE Leap.
 - `docker pull jenkins/jenkins` para instalar Jenkins.
+- `docker build . -t <image_tag>` para generar una imagen con un archivo ***dockerfile***.
 - `docker images` para listar las imagenes instalads.
+- `docker run <image_tag>` para arrancar una imagen.
+- `docker run -d <image_tag>` para arrancar una imagen en segundo plano.
 - `docker ps` para ver los procesos corriendo.
 - `docker ps -a` para ver todos los procesos.
 - `docker start <process_hash>` para iniciar un proceso.
 - `docker attach <process_hash>` para usar un proceso.
+- `docker exec -it <process_hash> /bin/bash` para abrir una terminal en un proceso.
 - `Ctrl+P+Q` dentro de un proceso para salir.
 - `docker stop <process_hash>` para detener un proceso.
 - `docker rm <process_hash>` para eliminar un proceso.
@@ -1383,6 +1383,12 @@ sudo apt install docker-compose-plugin
 - [Swift](https://hub.docker.com/_/swift)
 - [Oracle Linux](https://hub.docker.com/_/oraclelinux)
 - [Amazon Linux](https://hub.docker.com/_/amazonlinux)
+
+## Para instalar docker compose
+
+```
+sudo apt install docker-compose-plugin
+```
 
 # yt-dlp
 
@@ -1414,8 +1420,13 @@ make
 - `locale` para ver la configuración del idioma del sistema.
 - `dpkg-reconfigure locales` para configurar el idioma del sistema.
 
-# adb (Android Debug Bridge)
+# adb
 
-- Para listar los dispositivos conectados al equipo: `adb devices -l`
+- Para listar los dispositivos conectados al equipo: `adb devices`
 - Para conectarse a los dispositivos: `adb shell`
+- Para conectarse a un dispositivo especifico: `adb -s <device> shell`
+- Para transferir de Android a Linux: `adb pull <android_path> <linux_path>
+- Para transferir de Linux a Android: `adb push <linux_path> <android_path>
+- Para configurar adb remote (dispositivo conectado): `adb tcpip 5555`
+- Para conectarse a dispositivo remote: `adb connect <device_address>`
 
