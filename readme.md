@@ -1372,6 +1372,12 @@ jar -cvmf MANIFEST.MF main.jar main.class
 java -jar main.jar
 ```
 
+## Usar librerias de un archivo jar
+
+```
+java -cp <filename>.jar <filename>.java
+```
+
 ## [Hilos en Java](https://github.com/ian16munoz3nunez1/info/tree/main/.threads)
 
 # python
