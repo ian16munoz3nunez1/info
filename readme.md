@@ -948,6 +948,7 @@ host del archivo.
 Agregar las líneas:
 
 ```
+write_enable=YES
 pasv_min_port=30000
 pasv_max_port=40000
 ```
@@ -1178,38 +1179,6 @@ sudo mount -t nfs -o proto=tcp,port=2049 <nfs-server-IP>:/ /mount/target
 ```
 
 al archivo `/etc/fstab`
-
-# Qemu
-
-1. Instalar `qemu`
-
-```
-sudo apt install qemu-utils qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager
-```
-
-2. Crear un disco duro virtual de 64G
-
-```
-qemu-img create -f qcow2 <diskName>.qcow2 64G
-```
-
-ver la información del disco con
-
-```
-qemu-img info <diskName>.qcow2
-```
-
-3. Hacer la instalación de un iso en el disco duro virtual
-
-```
-qemu-system-x86_64 -m 8G -smp 2 --enable-kvm -name '<VirtualMachineName>' -boot d -hda <diskName>.qcow2 -cdrom '<isoName>.iso'
-```
-
-4. Una vez realizada la instalación, arrancar desde el disco con
-
-```
-qemu-system-x86_64 -m 8G -smp 2 --enable-kvm -name '<VirtualMachineName>' -boot d -hda <diskName>.qcow2
-```
 
 # [VirtualBox](https://www.kali.org/docs/virtualization/install-virtualbox-host/)
 
