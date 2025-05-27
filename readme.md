@@ -565,73 +565,6 @@ Para eliminar el valor del ***regedit*** se ejecuta el comando
 reg delete HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run /v <value_name> /f
 ```
 
-# MySQL
-
-## XAMPP
-
-- `sudo /opt/lampp/lampp startmysql` para iniciar el servidor MySQL.
-- `/opt/lampp/bin/mysql -u root -p` para iniciar MySQL como root.
-
-## MariaDB
-
-- `sudo apt install mariadb-server` para instalar el servidor y servicio de MariaDB
-- `sudo mysql` luego de instalar MariaDB para entrar a mysql como root y configurar
-o crear nuevos usuarios, bases de datos y tablas.
-- `GRANT ALL ON *.* TO '<user_name>'@'<host_address>' IDENTIFIED BY '<password>'
-WITH GRANT OPTION;` para crear un usuario con todos los permisos a tablas y bases de
-datos
-- `FLUSH PRIVILEGES;` luego de crear un nuevo usuario para refrescar la tabla y que
-los cambios tomen efecto.
-- `mysql -u <user_name> -p` para ingresar como un usuario especifico.
-- `mysql -h <host_address> -u <user_name> -p` para ingresar como un usuario especifico
-a un servidor remoto.
-
-### Configurar conexión remota a la base de datos
-
-1. En el servidor, buscar el archivo `/etc/mysql/mysql.conf.d/mysqld.cnf` o
-`/etc/mysql/mariadb.conf.d/50-server.cnf` o buscar la cadena `bind-address` en el
-directorio `/etc/mysql/` y cambiar el valor de `bind-address` de `127.0.0.1` a
-`0.0.0.0`.
-2. Reiniciar el servicio de `mysql` o `mariadb`.
-3. Habilitar el puerto de ***MySQL*** en el firewall `ufw` con el comando
-`sudo ufw allow from <ip_address> to any port 3306` o `sudo ufw allow 3306` (Esto en
-caso de tener el firewall instalado y activado).
-
-# jar
-
-```
-javac -d . main.java
-MANIFEST.MF --> Main-Class: main
-jar -cvmf MANIFEST.MF main.jar main.class
-java -jar main.jar
-```
-
-# cmake y make
-
-1. Crear un archivo de C++
-2. Crear un archivo `CMakeLists.txt` y agregar lo siguiente
-
-```
-cmake_minimum_required(VERSION 2.8)
-project(helloWorld)
-add_executable(main main.cpp)
-```
-3. Crear un directorio llamado `build` (puede tener cualquier nombre)
-
-4. Moverse al nuevo directorio y ejecutar
-
-```
-cmake ..
-```
-
-5. Ejecutar en este directorio
-
-```
-make
-```
-
-para generar un archivo binario.
-
 # vim
 
 - `h` para moverse a la izquierda.
@@ -1399,4 +1332,81 @@ make
 - Para transferir de Linux a Android: `adb push <linux_path> <android_path>
 - Para configurar adb remote (dispositivo conectado): `adb tcpip 5555`
 - Para conectarse a dispositivo remote: `adb connect <device_address>`
+
+# c
+
+## cmake y make
+
+1. Crear un archivo de C++
+2. Crear un archivo `CMakeLists.txt` y agregar lo siguiente
+
+```
+cmake_minimum_required(VERSION 2.8)
+project(helloWorld)
+add_executable(main main.cpp)
+```
+3. Crear un directorio llamado `build` (puede tener cualquier nombre)
+
+4. Moverse al nuevo directorio y ejecutar
+
+```
+cmake ..
+```
+
+5. Ejecutar en este directorio
+
+```
+make
+```
+
+para generar un archivo binario.
+
+# java
+
+## Crear un jar ejecutable
+
+```
+javac -d . main.java
+MANIFEST.MF --> Main-Class: main
+jar -cvmf MANIFEST.MF main.jar main.class
+java -jar main.jar
+```
+
+## [Hilos en Java](https://github.com/ian16munoz3nunez1/info/tree/main/.threads)
+
+# python
+
+## [Hilos en Python](https://github.com/ian16munoz3nunez1/info/tree/main/.threads)
+
+# mysql
+
+## XAMPP
+
+- `sudo /opt/lampp/lampp startmysql` para iniciar el servidor MySQL.
+- `/opt/lampp/bin/mysql -u root -p` para iniciar MySQL como root.
+
+## MariaDB
+
+- `sudo apt install mariadb-server` para instalar el servidor y servicio de MariaDB
+- `sudo mysql` luego de instalar MariaDB para entrar a mysql como root y configurar
+o crear nuevos usuarios, bases de datos y tablas.
+- `GRANT ALL ON *.* TO '<user_name>'@'<host_address>' IDENTIFIED BY '<password>'
+WITH GRANT OPTION;` para crear un usuario con todos los permisos a tablas y bases de
+datos
+- `FLUSH PRIVILEGES;` luego de crear un nuevo usuario para refrescar la tabla y que
+los cambios tomen efecto.
+- `mysql -u <user_name> -p` para ingresar como un usuario especifico.
+- `mysql -h <host_address> -u <user_name> -p` para ingresar como un usuario especifico
+a un servidor remoto.
+
+### Configurar conexión remota a la base de datos
+
+1. En el servidor, buscar el archivo `/etc/mysql/mysql.conf.d/mysqld.cnf` o
+`/etc/mysql/mariadb.conf.d/50-server.cnf` o buscar la cadena `bind-address` en el
+directorio `/etc/mysql/` y cambiar el valor de `bind-address` de `127.0.0.1` a
+`0.0.0.0`.
+2. Reiniciar el servicio de `mysql` o `mariadb`.
+3. Habilitar el puerto de ***MySQL*** en el firewall `ufw` con el comando
+`sudo ufw allow from <ip_address> to any port 3306` o `sudo ufw allow 3306` (Esto en
+caso de tener el firewall instalado y activado).
 
