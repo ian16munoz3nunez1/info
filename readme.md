@@ -1286,6 +1286,10 @@ sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 - [Swift](https://hub.docker.com/_/swift)
 - [Oracle Linux](https://hub.docker.com/_/oraclelinux)
 - [Amazon Linux](https://hub.docker.com/_/amazonlinux)
+- [MSSQL](https://hub.docker.com/r/microsoft/mssql-server)
+- [.NET](https://hub.docker.com/r/microsoft/dotnet)
+- [Windows](https://hub.docker.com/r/microsoft/windows)
+- [Windows Server](https://hub.docker.com/r/microsoft/windows-server)
 
 ## Para instalar docker compose
 
