@@ -890,7 +890,7 @@ al archivo `/etc/vsftpd.conf`
 
 - `wget ftp://<user>:<password>@<hostname>/path/to/file` para descargar un archivo de un servidor ftp.
 - `wget -r ftp://<user>:<password>@<hostname>/path/to/dir` para descargar todo un directorio de un servidor ftp.
-- `curl -u '<user>:<password>' -T '/path/to/file' ftp://remote/path/
+- `curl -u <user>:<password> -T /path/to/file ftp://remote/path/` para subir un archivo al servidor con `curl`
 
 # RDP
 
@@ -1278,7 +1278,7 @@ sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 - [Ubuntu](https://hub.docker.com/_/ubuntu)
 - [openSUSE](https://hub.docker.com/r/opensuse/leap)
 - [Jenkins](https://hub.docker.com/r/jenkins/jenkins)
-- [GitLab](https://hub.docker.com/r/gitlab/gitlab-ee)
+- [GitLab](https://hub.docker.com/r/gitlab/gitlab-ce)
 - Docker-osX
 - [Gazebo](https://hub.docker.com/_/gazebo)
 - [ROS](https://hub.docker.com/_/ros)
