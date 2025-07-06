@@ -1256,6 +1256,7 @@ sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
 ## Comandos
 
+- `docker pull debian` para instalar Debian.
 - `docker pull ubuntu` para instalar Ubuntu.
 - `docker pull opensuse/leap` para instalar openSUSE Leap.
 - `docker pull jenkins/jenkins` para instalar Jenkins.
@@ -1272,14 +1273,16 @@ sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 - `docker stop <process_hash>` para detener un proceso.
 - `docker rm <process_hash>` para eliminar un proceso.
 - `docker rmi <image_hash/image_name>` para eliminar una imagen.
+- `docker network create my_net --subnet 10.1.0.0/24` para crear una red de usuario.
 
 ## Imagenes
 
+- [Debian](https://hub.docker.com/_/debian)
 - [Ubuntu](https://hub.docker.com/_/ubuntu)
 - [openSUSE](https://hub.docker.com/r/opensuse/leap)
 - [Jenkins](https://hub.docker.com/r/jenkins/jenkins)
 - [GitLab](https://hub.docker.com/r/gitlab/gitlab-ce)
-- Docker-osX
+- [Docker-osX](https://github.com/sickcodes/Docker-OSX)
 - [Gazebo](https://hub.docker.com/_/gazebo)
 - [ROS](https://hub.docker.com/_/ros)
 - [Dart](https://hub.docker.com/_/dart)
@@ -1295,6 +1298,56 @@ sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
 ```
 sudo apt install docker-compose-plugin
+```
+
+## GitLab
+
+Para instalar el contenedor de ***GitLab Community Edition***
+
+```
+docker pull gitlab/gitlab-ce
+```
+
+Para listar las imagenes instaladas
+
+```
+docker images
+```
+
+Para ejecutar la imagen de GitLab
+
+```
+docker run -p 8000:80 \
+-v ./.gitlab/config:/etc/gitlab \
+-v ./.gitlab/data:/var/opt/gitlab \
+-d gitlab/gitlab-ce
+```
+
+Con una red de usuario y usando una ip específica, se puede usar lo siguiente
+
+```
+docker run -p 8000:80 \
+-v ./.gitlab/config:/etc/gitlab \
+-v ./.gitlab/data:/var/opt/gitlab \
+--net <user_net_name> --ip <ip> \
+-d gitlab/gitlab-ce
+```
+
+Para ingresar por primera vez, se usa el usuario `root` y la contraseña se obtiene
+de un archivo ejecutando el siguiente comando
+
+```
+docker exec -it 6befb2ecb255 cat /etc/gitlab/initial_root_password
+```
+
+Para subir un repositorio se usa
+
+```
+git init
+git commit -m "<commit_message>"
+git branch -M main
+git remote add origin git@<docker_ip>:<user>/<repo_name>
+git push -u origin main
 ```
 
 # yt-dlp
@@ -1400,9 +1453,10 @@ java -cp <filename>.jar <filename>.java
 - `sudo apt install mariadb-server` para instalar el servidor y servicio de MariaDB
 - `sudo mysql` luego de instalar MariaDB para entrar a mysql como root y configurar
 o crear nuevos usuarios, bases de datos y tablas.
-- `GRANT ALL ON *.* TO '<user_name>'@'<host_address>' IDENTIFIED BY '<password>'
-WITH GRANT OPTION;` para crear un usuario con todos los permisos a tablas y bases de
-datos
+- `CREATE USER '<user_name>'@'<host>' IDENTIFIED BY '<password>';` para crear un nuevo usuario.
+- `GRANT ALL PRIVILEGES ON <database>.<table> TO '<user_name>'@'<host>';` para dar todos los
+permisos a un usuario a ciertas bases de datos y tablas.
+- `SELECT user, host FROM mysql.user` para ver los usuarios y sus hosts como root
 - `FLUSH PRIVILEGES;` luego de crear un nuevo usuario para refrescar la tabla y que
 los cambios tomen efecto.
 - `mysql -u <user_name> -p` para ingresar como un usuario especifico.
