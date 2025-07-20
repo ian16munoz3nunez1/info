@@ -12,6 +12,9 @@ comando.
 - `crontab -e` para programar y ejecutar tareas.
 - `crontab -l` para listar las tareas que se ejecutan constantemente.
 - `date` para ver la fecha y hora.
+- `dd if=/dev/zero of=<path/to/device> bs=1M count=1` para formatear un dispositivo.
+- `dd if=<path/to/image> of=<path/to/device> bs=4M status=progress oflag=sync` para quemar una imagen
+sobre un dispositivo.
 - `df -h` muestra particiones, su tamaño y el espacio usado y disponible.
 - `dmesg -T -x` para listar los mensajes del buffer del kernel.
 - `dpkg-query -W <package>` para mostrar la versión de un paquete instalado.
@@ -312,6 +315,8 @@ deseado y su estructura de directorios.
 - `sudo evtest /dev/input/event<x>` para testear los eventos de los dispositivos enlazados al evento `<x>`.
 - `xinput --list` muestra los dispositivos de entrada detectados.
 - `xinput --list-props <id>` muestra información del dispositivo de entrada con el id `<id>`.
+- `xinput enable <device_id>` para habilitar un dispositivo.
+- `xinput disable <device_id>` para deshabilitar un dispositivo.
 - `xmodmap` para modificar y listar la configuración de mapeo de teclado y botones de touchpad.
 
 # opensuse
@@ -1280,15 +1285,17 @@ sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 - [Debian](https://hub.docker.com/_/debian)
 - [Ubuntu](https://hub.docker.com/_/ubuntu)
 - [openSUSE](https://hub.docker.com/r/opensuse/leap)
+- [Alpine](https://hub.docker.com/_/alpine)
+- [Docker-osX](https://github.com/sickcodes/Docker-OSX)
+- [Oracle Linux](https://hub.docker.com/_/oraclelinux)
+- [Amazon Linux](https://hub.docker.com/_/amazonlinux)
 - [Jenkins](https://hub.docker.com/r/jenkins/jenkins)
 - [GitLab](https://hub.docker.com/r/gitlab/gitlab-ce)
-- [Docker-osX](https://github.com/sickcodes/Docker-OSX)
+- [Nextcloud](https://hub.docker.com/_/nextcloud)
 - [Gazebo](https://hub.docker.com/_/gazebo)
 - [ROS](https://hub.docker.com/_/ros)
 - [Dart](https://hub.docker.com/_/dart)
 - [Swift](https://hub.docker.com/_/swift)
-- [Oracle Linux](https://hub.docker.com/_/oraclelinux)
-- [Amazon Linux](https://hub.docker.com/_/amazonlinux)
 - [MSSQL](https://hub.docker.com/r/microsoft/mssql-server)
 - [.NET](https://hub.docker.com/r/microsoft/dotnet)
 - [Windows](https://hub.docker.com/r/microsoft/windows)
