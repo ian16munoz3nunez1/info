@@ -15,6 +15,11 @@ comando.
 - `dd if=/dev/zero of=<path/to/device> bs=1M count=1` para formatear un dispositivo.
 - `dd if=<path/to/image> of=<path/to/device> bs=4M status=progress oflag=sync` para quemar una imagen
 sobre un dispositivo.
+- Para crear una imagen de disco de `8G`
+    1. `dd if=/dev/zero of=</path/to/image>.img bs=1G count=8`
+    2. `mkfs.ext4 </path/to/image>.img` para formatear la imagen con formato `ext4`
+    3. `mount -o loop </path/to/image>.img </path/to/mount/dir/>`
+    4. Agregar `</path/to/image>.img </path/to/mount/dir> ext4 loop,defaults 0 0` a `/etc/fstab`
 - `df -h` muestra particiones, su tamaño y el espacio usado y disponible.
 - `dmesg -T -x` para listar los mensajes del buffer del kernel.
 - `dpkg-query -W <package>` para mostrar la versión de un paquete instalado.
@@ -95,6 +100,7 @@ puertos usados por KDE connect.
 - 53: dns
 - 80: http
 - 2049: nfs
+- 3306: MariaDB
 - 5900: vnc
 
 ### Puertos permitidos por ufw
@@ -107,6 +113,7 @@ puertos usados por KDE connect.
     - 1716
     - 1739
 - 2049: nfs
+- 3306: MariaDB
 - 5900: vnc
 - 7236: gnome-network-displays
 - 8080: python
@@ -301,6 +308,8 @@ deseado y su estructura de directorios.
 - Datos guardados de ***PPSSPP*** `~/.var/app/org.ppsspp.PPSSPP/config/ppsspp/PSP/SAVEDATA/`.
 - Archivos necesarios para ***xemu*** `~/.var/app/app.xemu.xemu/data/xemu/xemu/`.
 - Para variables de entorno `/etc/profile`, `/etc/environment` y `/etc/environment.d/`.
+- Para menus de ***Kando*** `~/.var/app/menu.kando.Kando/config/kando/menus.json`
+- Para configurar ***Kate*** `~/.config/kate/`
 
 # Devices and drivers
 
@@ -327,6 +336,16 @@ deseado y su estructura de directorios.
 - `zypper install net-tools-deprecated` para instalar herramientas de red.
 - `zypper install gcc-g++` para instalar el compilador g++.
 - `zypper install go` para instalar golang.
+
+## Creando usuario con sudo habilitado
+
+1. `zypper install sudo`.
+2. `zypper install system-group-wheel`.
+3. `zypper install system-user-mail`.
+4. `useradd -m -d /home/<username> -s /usr/bin/<shell>`.
+5. `passwd <username>`.
+6. `usermod -aG wheel <username>`.
+7. Agregar `%wheel ALL=(ALL:ALL) ALL` a `/etc/sudoers`.
 
 # LSP
 
@@ -405,11 +424,19 @@ al archivo `/home/${USER}/.config/kate/lspclient/settings.json`
 
 2. Clonar el repositorio [JLS](https://github.com/georgewfraser/java-language-server) en `/home/${USER}/.config`
 
-3. Ir al directorio del repo y ejecutar `./scripts/link_linux.sh`
+3. Ir al directorio del repo y editar el archivo `./scripts/linx_linux.sh` y agregar los modulos
 
-3. Ejecutar `mvn package -DskipTests`
+```
+java.base,java.compiler,java.desktop,java.instrument,java.logging,java.sql,java.xml,jdk.compiler,jdk.jdi,jdk.unsupported,jdk.zipfs
+```
 
-4. Agregar la entrada
+agregar `JAVA_HOME=</path/to/java/>`
+
+4. Ir al directorio del repo y ejecutar `./scripts/link_linux.sh`
+
+5. Ejecutar `mvn package -DskipTests`
+
+6. Agregar la entrada
 
 ```
     "java": {
@@ -492,16 +519,6 @@ Y agregar la entrada
 ```
 
 al archivo `/home/${USER}/.config/kate/lspclient/settings.json`
-
-## Creando usuario con sudo habilitado
-
-1. `zypper install sudo`.
-2. `zypper install system-group-wheel`.
-3. `zypper install system-user-mail`.
-4. `useradd -m -d /home/<username> -s /usr/bin/<shell>`.
-5. `passwd <username>`.
-6. `usermod -aG wheel <username>`.
-7. Agregar `%wheel ALL=(ALL:ALL) ALL` a `/etc/sudoers`.
 
 # Raspberry Pi
 
@@ -1392,14 +1409,12 @@ make
 - Para listar los dispositivos conectados al equipo: `adb devices`
 - Para conectarse a los dispositivos: `adb shell`
 - Para conectarse a un dispositivo especifico: `adb -s <device> shell`
-- Para transferir de Android a Linux: `adb pull <android_path> <linux_path>
-- Para transferir de Linux a Android: `adb push <linux_path> <android_path>
+- Para transferir de Android a Linux: `adb pull <android_path> <linux_path>`
+- Para transferir de Linux a Android: `adb push <linux_path> <android_path>`
 - Para configurar adb remote (dispositivo conectado): `adb tcpip 5555`
 - Para conectarse a dispositivo remote: `adb connect <device_address>`
 
-# c
-
-## cmake y make
+# cmake y make
 
 1. Crear un archivo de C++
 2. Crear un archivo `CMakeLists.txt` y agregar lo siguiente
@@ -1411,7 +1426,7 @@ add_executable(main main.cpp)
 ```
 3. Crear un directorio llamado `build` (puede tener cualquier nombre)
 
-4. Moverse al nuevo directorio y ejecutar
+4. Moverse al nuevo directorio (`build`) y ejecutar
 
 ```
 cmake ..
@@ -1442,11 +1457,95 @@ java -jar main.jar
 java -cp <filename>.jar <filename>.java
 ```
 
-## [Hilos en Java](https://github.com/ian16munoz3nunez1/info/tree/main/.threads)
+## Compilar un proyecto con Maven
 
-# python
+1. Crear un árbol de trabajo de la siguiente forma
 
-## [Hilos en Python](https://github.com/ian16munoz3nunez1/info/tree/main/.threads)
+```
+.
+├── pom.xml
+└── src
+    └── main
+        └── java
+            └── Main.java
+```
+
+2. Agregar al archivo `pom.xml`
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>test-project</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>test-project</name>
+    <description>A simple Maven project</description>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>Main</mainClass>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <Built-By>${user.name}</Built-By>
+                            <Build-Jdk>${java.version}</Build-Jdk>
+                            <Implementation-Title>${project.name}</Implementation-Title>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                            <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+3. Para compilar el proyecto
+
+```
+mvn compile
+```
+
+4. Para empaquetar el proyecto
+
+```
+mvn package
+```
+
+5. Para limpiar el proyecto
+
+```
+mvn clean
+```
 
 # mysql
 
